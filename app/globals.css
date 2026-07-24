@@ -762,7 +762,7 @@ nav a:focus-visible::after {
   position: relative;
   z-index: 1;
   width: min(80%, 720px);
-  filter: saturate(0.9) contrast(1.04) drop-shadow(14px 18px 0 rgba(7, 28, 43, 0.38));
+  filter: saturate(0.9) contrast(1.04);
   transition: transform 500ms cubic-bezier(.2, .8, .2, 1);
 }
 
