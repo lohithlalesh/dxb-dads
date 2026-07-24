@@ -61,11 +61,11 @@ export default function Home() {
 
         <header className="site-header">
           <a className="wordmark" href="#home" aria-label="DXB Dads home">
-            <span className="wordmark-dxb">DXB</span>
-            <span className="wordmark-dads">DADS</span>
-            <span className="wordmark-mic" aria-hidden="true">
-              ●
-            </span>
+            <img
+              src="/dxb-dads-logo.png"
+              alt="DXB Dads"
+              className="wordmark-image"
+            />
           </a>
           <nav aria-label="Primary navigation">
             <a href="#episodes">Episodes</a>
@@ -112,9 +112,8 @@ export default function Home() {
       </div>
 
       <section className="intro" id="about" aria-labelledby="intro-title">
-        <div className="intro-stamp" aria-hidden="true">
-          <span>3</span>
-          DADS
+        <div className="intro-logo" aria-hidden="true">
+          <img src="/dxb-dads-logo.png" alt="" />
         </div>
         <p className="section-label">[ THE SHORT VERSION ]</p>
         <h2 id="intro-title">
@@ -253,35 +252,37 @@ export default function Home() {
       </section>
 
       <section className="listen" id="listen" aria-labelledby="listen-title">
-        <div className="listen-orbit orbit-one" aria-hidden="true">
-          DXB
+        <div className="listen-poster">
+          <img
+            src="/dxb-dads-coming-soon.png"
+            alt="Coming soon — DXB Dads podcast"
+          />
         </div>
-        <div className="listen-orbit orbit-two" aria-hidden="true">
-          03
+        <div className="listen-content">
+          <p className="section-label">[ PULL UP A CHAIR ]</p>
+          <h2 id="listen-title">
+            SOMETHING
+            <br />
+            <span>REAL</span> IS COMING.
+          </h2>
+          <p className="listen-copy">
+            Season one is on the way. Find DXB Dads soon on your favourite
+            podcast platform.
+          </p>
+          <div className="platforms" aria-label="Coming soon on podcast platforms">
+            <span>Spotify</span>
+            <span>Apple Podcasts</span>
+            <span>YouTube</span>
+          </div>
+          <a className="listen-cta" href="#home">
+            Back to the top <span aria-hidden="true">↑</span>
+          </a>
         </div>
-        <p className="section-label">[ PULL UP A CHAIR ]</p>
-        <h2 id="listen-title">
-          SOMETHING
-          <br />
-          <span>REAL</span> IS COMING.
-        </h2>
-        <p className="listen-copy">
-          Season one is on the way. Find DXB Dads soon on your favourite
-          podcast platform.
-        </p>
-        <div className="platforms" aria-label="Coming soon on podcast platforms">
-          <span>Spotify</span>
-          <span>Apple Podcasts</span>
-          <span>YouTube</span>
-        </div>
-        <a className="listen-cta" href="#home">
-          Back to the top <span aria-hidden="true">↑</span>
-        </a>
       </section>
 
       <footer>
-        <a className="footer-mark" href="#home" aria-label="DXB Dads home">
-          DXB<span>DADS</span>
+        <a className="footer-logo" href="#home" aria-label="DXB Dads home">
+          <img src="/dxb-dads-logo.png" alt="DXB Dads" />
         </a>
         <p>Real dads. Real talk. Dubai life.</p>
         <p>© 2026 DXB Dads</p>

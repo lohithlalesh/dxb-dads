@@ -47,6 +47,8 @@ test("server-renders the finished DXB Dads landing page", async () => {
   assert.match(html, /Built in Dubai\./);
   assert.match(html, /FIRST/);
   assert.match(html, /CONVERSATIONS/);
+  assert.match(html, /\/dxb-dads-logo\.png/);
+  assert.match(html, /\/dxb-dads-coming-soon\.png/);
   assert.match(html, /https:\/\/dxb-dads\.example\/og\.png/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
@@ -63,11 +65,15 @@ test("removes the disposable starter and keeps accessibility motion controls", a
   await assert.rejects(access(new URL("preview.css", previewRoot)));
   await access(new URL("../public/dxb-dads-studio.png", import.meta.url));
   await access(new URL("../public/dxb-dads-cover.png", import.meta.url));
+  await access(new URL("../public/dxb-dads-logo.png", import.meta.url));
+  await access(new URL("../public/dxb-dads-coming-soon.png", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
 
   assert.match(page, /className="skip-link"/);
   assert.match(page, /aria-label="Primary navigation"/);
   assert.match(layout, /generateMetadata/);
+  assert.match(css, /family=Anton/);
+  assert.match(css, /--display:\s*"Anton"/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(packageJson, /"name": "dxb-dads"/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);

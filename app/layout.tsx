@@ -38,8 +38,8 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [
         {
           url: socialImage,
-          width: 1774,
-          height: 887,
+          width: 1693,
+          height: 929,
           alt: "DXB Dads podcast — three hosts in their Dubai studio",
         },
       ],
