@@ -62,7 +62,7 @@ export default function Home() {
         <header className="site-header">
           <a className="wordmark" href="#home" aria-label="DXB Dads home">
             <img
-              src="/dxb-dads-logo.png"
+              src="/dxb-dads-logo-clean.png"
               alt="DXB Dads"
               className="wordmark-image"
             />
@@ -113,7 +113,7 @@ export default function Home() {
 
       <section className="intro" id="about" aria-labelledby="intro-title">
         <div className="intro-logo" aria-hidden="true">
-          <img src="/dxb-dads-logo.png" alt="" />
+          <img src="/dxb-dads-logo-clean.png" alt="" />
         </div>
         <p className="section-label">[ THE SHORT VERSION ]</p>
         <h2 id="intro-title">
@@ -214,7 +214,7 @@ export default function Home() {
           <div className="cover-halo" aria-hidden="true" />
           <img
             className="cover-art"
-            src="/dxb-dads-cover.png"
+            src="/dxb-dads-logo-clean.png"
             alt="Illustrated DXB Dads podcast artwork with fathers, daughters and the Dubai skyline"
           />
           <span className="cover-note">Made in the UAE ↗</span>
@@ -252,11 +252,16 @@ export default function Home() {
       </section>
 
       <section className="listen" id="listen" aria-labelledby="listen-title">
-        <div className="listen-poster">
-          <img
-            src="/dxb-dads-coming-soon.png"
-            alt="Coming soon — DXB Dads podcast"
-          />
+        <div
+          className="listen-poster"
+          aria-label="Coming soon — DXB Dads podcast"
+        >
+          <div className="poster-type" aria-hidden="true">
+            <span className="poster-coming">— Coming Soon —</span>
+            <strong>DXB.DADS</strong>
+            <span className="poster-podcast">Podcast</span>
+            <small>Real dads. Real talk. Dubai life.</small>
+          </div>
         </div>
         <div className="listen-content">
           <p className="section-label">[ PULL UP A CHAIR ]</p>
@@ -282,7 +287,7 @@ export default function Home() {
 
       <footer>
         <a className="footer-logo" href="#home" aria-label="DXB Dads home">
-          <img src="/dxb-dads-logo.png" alt="DXB Dads" />
+          <img src="/dxb-dads-logo-clean.png" alt="DXB Dads" />
         </a>
         <p>Real dads. Real talk. Dubai life.</p>
         <p>© 2026 DXB Dads</p>
