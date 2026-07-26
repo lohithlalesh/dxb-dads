@@ -39,15 +39,16 @@ test("server-renders the finished DXB Dads landing page", async () => {
   const html = await response.text();
   assert.match(
     html,
-    /<title>DXB Dads — Real Dads\. Real Talk\. Dubai Life\.<\/title>/i,
+    /<title>DXB Dads — Real dads · Real talk · Dubai life<\/title>/i,
   );
-  assert.match(html, /THREE DADS\./);
-  assert.match(html, /ONLY DAUGHTERS\./);
-  assert.match(html, /ZERO FILTER\./);
-  assert.match(html, /Built in Dubai\./);
+  assert.match(html, /THREE DADS/);
+  assert.match(html, /ONLY DAUGHTERS/);
+  assert.match(html, /without the polished answers/);
+  assert.match(html, /Built in Dubai/);
   assert.match(html, /FIRST/);
   assert.match(html, /CONVERSATIONS/);
   assert.match(html, /\/dxb-dads-logo-clean\.png/);
+  assert.match(html, /\/dxb-dads-cutout\.png/);
   assert.match(html, /Coming Soon/);
   assert.match(html, /https:\/\/dxb-dads\.example\/og\.png/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
@@ -65,6 +66,7 @@ test("removes the disposable starter and keeps accessibility motion controls", a
   await assert.rejects(access(new URL("preview.css", previewRoot)));
   await access(new URL("../public/dxb-dads-studio.png", import.meta.url));
   await access(new URL("../public/dxb-dads-logo-clean.png", import.meta.url));
+  await access(new URL("../public/dxb-dads-cutout.png", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
 
   assert.match(page, /className="skip-link"/);
