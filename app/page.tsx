@@ -1,20 +1,20 @@
 const episodes = [
   {
     number: "01",
-    title: "The Daughter Effect",
-    note: "How raising girls changes the way you lead, listen and show up.",
+    title: "The daughter effect",
+    note: "How raising girls changes the way you lead, listen and show up",
     color: "aqua",
   },
   {
     number: "02",
-    title: "Built in the Sand",
-    note: "The honest version of building a business in the UAE.",
+    title: "Built in the sand",
+    note: "The honest version of building a business in the UAE",
     color: "yellow",
   },
   {
     number: "03",
-    title: "The School-Run CEO",
-    note: "Big meetings, tiny backpacks and the myth of perfect balance.",
+    title: "The school-run CEO",
+    note: "Big meetings, tiny backpacks and the myth of perfect balance",
     color: "orange",
   },
 ];
@@ -22,20 +22,20 @@ const episodes = [
 const hosts = [
   {
     number: "01",
-    role: "The Builder",
-    line: "Big ideas, honest lessons and a permanent soft spot for his girls.",
+    role: "The builder",
+    line: "Big ideas, honest lessons and a permanent soft spot for his girls",
     focus: "left",
   },
   {
     number: "02",
-    role: "The Balancer",
-    line: "Family first. Ambition intact. Still figuring out the calendar.",
+    role: "The balancer",
+    line: "Family first, ambition intact and still figuring out the calendar",
     focus: "center",
   },
   {
     number: "03",
-    role: "The Connector",
-    line: "People, perspective and the stories that make Dubai feel like home.",
+    role: "The connector",
+    line: "People, perspective and the stories that make Dubai feel like home",
     focus: "right",
   },
 ];
@@ -55,10 +55,6 @@ export default function Home() {
       </a>
 
       <section className="hero" id="home" aria-labelledby="hero-title">
-        <div className="hero-image" aria-hidden="true" />
-        <div className="hero-shade" aria-hidden="true" />
-        <div className="hero-grain" aria-hidden="true" />
-
         <header className="site-header">
           <a className="wordmark" href="#home" aria-label="DXB Dads home">
             <img
@@ -79,31 +75,58 @@ export default function Home() {
         </header>
 
         <div className="hero-content" id="content">
-          <p className="hero-kicker">A Dubai podcast about</p>
-          <h1 id="hero-title">
-            <span className="title-line">THREE DADS.</span>
-            <span className="title-line title-serif">ONLY DAUGHTERS.</span>
-            <span className="title-sticker">ZERO FILTER.</span>
-          </h1>
-          <div className="hero-bottom">
-            <p>
-              Life, business and raising girls in the city
-              <br />
-              where everything moves fast.
+          <div className="hero-copy">
+            <p className="hero-kicker">
+              DXB Dads <span>Podcast</span>
             </p>
-            <a className="round-link" href="#episodes" aria-label="Explore episodes">
-              <span>Explore</span>
-              <span aria-hidden="true">↓</span>
-            </a>
+            <h1 id="hero-title">
+              <span className="title-line">THREE DADS</span>
+              <span className="title-line title-gold">ONLY DAUGHTERS</span>
+            </h1>
+            <p className="hero-deck">
+              Fatherhood, business and life in Dubai
+              <br />
+              without the polished answers
+            </p>
+            <div className="hero-actions">
+              <a className="hero-primary" href="#dads">
+                Meet the dads <ArrowIcon />
+              </a>
+              <a className="hero-secondary" href="#episodes">
+                Season 01 <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="hero-visual" aria-label="The three DXB Dads hosts">
+            <div className="hero-disc" aria-hidden="true" />
+            <div className="hero-rule" aria-hidden="true" />
+            <img
+              className="hero-cutout"
+              src="/dxb-dads-cutout.png"
+              alt="Three fathers recording the DXB Dads podcast"
+            />
+            <div className="hero-stat" aria-hidden="true">
+              <strong>03</strong>
+              <span>Dads</span>
+              <span>One city</span>
+              <span>Only daughters</span>
+            </div>
+            <span className="hero-place" aria-hidden="true">
+              Dubai / UAE
+            </span>
           </div>
         </div>
 
         <div className="hero-side-note" aria-hidden="true">
-          25.2048° N&nbsp;&nbsp;55.2708° E
+          25° 12′ N&nbsp;&nbsp;55° 16′ E
         </div>
       </section>
 
-      <div className="ticker" aria-label="Fatherhood, family, business, Dubai, real talk">
+      <div
+        className="ticker"
+        aria-label="Fatherhood, family, business, Dubai, real talk"
+      >
         <div className="ticker-track" aria-hidden="true">
           <span>{ticker}</span>
           <span>{ticker}</span>
@@ -112,25 +135,22 @@ export default function Home() {
       </div>
 
       <section className="intro" id="about" aria-labelledby="intro-title">
-        <div className="intro-logo" aria-hidden="true">
-          <img src="/dxb-dads-logo-clean.png" alt="" />
-        </div>
         <p className="section-label">[ THE SHORT VERSION ]</p>
         <h2 id="intro-title">
-          Built in Dubai.
+          Built in Dubai
           <br />
-          <em>Raised by daughters.</em>
+          <em>Raised by daughters</em>
         </h2>
         <div className="intro-copy">
           <p className="intro-lede">
-            Three friends. Three different playbooks. One thing in common:
-            daughters who rewired the way they see the world.
+            Three friends, three playbooks and one thing in common — daughters
+            who rewired the way they see the world
           </p>
           <p>
-            DXB Dads is the table where fatherhood meets ambition—without the
-            polished answers. Expect sharp opinions, spectacular detours and
+            DXB Dads is the table where fatherhood meets ambition without the
+            polished answers — expect sharp opinions, spectacular detours and
             the kind of honesty that usually arrives after the microphones
-            switch off.
+            switch off
           </p>
         </div>
       </section>
@@ -150,14 +170,14 @@ export default function Home() {
         <div className="studio-copy">
           <p className="section-label">[ ON MIC / OFF SCRIPT ]</p>
           <h2>
-            REAL DADS.
+            REAL DADS
             <br />
-            <span>REAL TALK.</span>
+            <span>REAL TALK</span>
           </h2>
           <p>
-            No gurus. No parenting manuals. Just three dads comparing notes on
+            No gurus, no parenting manuals — just three dads comparing notes on
             family, work, identity and the beautifully chaotic business of
-            raising daughters in the UAE.
+            raising daughters in the UAE
           </p>
           <a className="text-link" href="#dads">
             Meet the trio <ArrowIcon />
@@ -176,8 +196,8 @@ export default function Home() {
             </h2>
           </div>
           <p>
-            A preview of the conversations we are bringing to the table.
-            Follow the launch and be there from episode one.
+            A preview of the conversations coming to the table — follow the
+            launch and be there from episode one
           </p>
         </div>
 
@@ -201,13 +221,13 @@ export default function Home() {
       <section className="cover-break" aria-label="DXB Dads podcast artwork">
         <div className="cover-copy">
           <p className="section-label">[ THIS IS THE CREW ]</p>
-          <p className="scribble">Real dads. Real talk. Dubai life.</p>
+          <p className="scribble">Real dads · Real talk · Dubai life</p>
           <h2>
             THE CITY
             <br />
             IS OUR
             <br />
-            <span>FOURTH HOST.</span>
+            <span>FOURTH HOST</span>
           </h2>
         </div>
         <div className="cover-art-wrap">
@@ -230,8 +250,8 @@ export default function Home() {
             THE DADS
           </h2>
           <p>
-            Different backgrounds. Different takes. The same fierce devotion
-            to family.
+            Different backgrounds, different takes and the same fierce
+            devotion to family
           </p>
         </div>
 
@@ -258,9 +278,9 @@ export default function Home() {
         >
           <div className="poster-type" aria-hidden="true">
             <span className="poster-coming">— Coming Soon —</span>
-            <strong>DXB.DADS</strong>
+            <strong>DXB DADS</strong>
             <span className="poster-podcast">Podcast</span>
-            <small>Real dads. Real talk. Dubai life.</small>
+            <small>Real dads · Real talk · Dubai life</small>
           </div>
         </div>
         <div className="listen-content">
@@ -268,11 +288,11 @@ export default function Home() {
           <h2 id="listen-title">
             SOMETHING
             <br />
-            <span>REAL</span> IS COMING.
+            <span>REAL</span> IS COMING
           </h2>
           <p className="listen-copy">
-            Season one is on the way. Find DXB Dads soon on your favourite
-            podcast platform.
+            Season one is on the way — find DXB Dads soon on your favourite
+            podcast platform
           </p>
           <div className="platforms" aria-label="Coming soon on podcast platforms">
             <span>Spotify</span>
@@ -289,7 +309,7 @@ export default function Home() {
         <a className="footer-logo" href="#home" aria-label="DXB Dads home">
           <img src="/dxb-dads-logo-clean.png" alt="DXB Dads" />
         </a>
-        <p>Real dads. Real talk. Dubai life.</p>
+        <p>Real dads · Real talk · Dubai life</p>
         <p>© 2026 DXB Dads</p>
       </footer>
     </main>

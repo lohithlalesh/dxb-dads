@@ -16,9 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: siteUrl,
-    title: "DXB Dads — Real Dads. Real Talk. Dubai Life.",
+    title: "DXB Dads — Real dads · Real talk · Dubai life",
     description:
-      "Three dads raising daughters talk honestly about family, business and life in Dubai and the UAE.",
+      "Three dads raising daughters talk honestly about family, business and life in Dubai and the UAE",
     keywords: [
       "DXB Dads",
       "Dubai podcast",
@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       title: "DXB Dads",
-      description: "Real dads. Real talk. Dubai life.",
+      description: "Real dads · Real talk · Dubai life",
       type: "website",
       url: siteUrl,
       images: [
@@ -47,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: "DXB Dads",
-      description: "Real dads. Real talk. Dubai life.",
+      description: "Real dads · Real talk · Dubai life",
       images: [socialImage],
     },
   };
