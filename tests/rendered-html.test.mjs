@@ -39,17 +39,21 @@ test("server-renders the finished DXB Dads landing page", async () => {
   const html = await response.text();
   assert.match(
     html,
-    /<title>DXB Dads — Real dads · Real talk · Dubai life<\/title>/i,
+    /<title>DXB Dads Podcast — Fatherhood, Family &amp; Real Talk in Dubai<\/title>/i,
   );
-  assert.match(html, /THREE DADS/);
-  assert.match(html, /ONLY DAUGHTERS/);
-  assert.match(html, /without the polished answers/);
-  assert.match(html, /Built in Dubai/);
-  assert.match(html, /FIRST/);
-  assert.match(html, /CONVERSATIONS/);
+  assert.match(html, /REAL DADS/);
+  assert.match(html, /REAL LIFE/);
+  assert.match(html, /REAL TALK/);
+  assert.match(html, /Three dads\. Three cultures\./i);
+  assert.match(html, /TOO HOT TO PARENT/i);
+  assert.match(html, /Pranav/);
+  assert.match(html, /Mustapha/);
+  assert.match(html, /Pavle Rastovic/);
+  assert.match(html, /https:\/\/www\.youtube\.com\/@DXBDads/);
+  assert.match(html, /https:\/\/open\.spotify\.com\/show\/033XRlOY44hvb5tbVHd6e1/);
+  assert.match(html, /application\/ld\+json/);
   assert.match(html, /\/dxb-dads-logo-clean\.png/);
   assert.match(html, /\/dxb-dads-cutout\.png/);
-  assert.match(html, /Coming Soon/);
   assert.match(html, /https:\/\/dxb-dads\.example\/og\.png/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
@@ -68,10 +72,15 @@ test("removes the disposable starter and keeps accessibility motion controls", a
   await access(new URL("../public/dxb-dads-logo-clean.png", import.meta.url));
   await access(new URL("../public/dxb-dads-cutout.png", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
+  await access(new URL("../public/llms.txt", import.meta.url));
+  await access(new URL("../public/llms-full.txt", import.meta.url));
+  await access(new URL("../public/robots.txt", import.meta.url));
 
   assert.match(page, /className="skip-link"/);
   assert.match(page, /aria-label="Primary navigation"/);
+  assert.match(page, /PodcastSeries/);
   assert.match(layout, /generateMetadata/);
+  assert.match(layout, /max-video-preview/);
   assert.match(css, /family=Anton/);
   assert.match(css, /--display:\s*"Anton"/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
