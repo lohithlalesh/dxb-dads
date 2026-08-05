@@ -74,8 +74,10 @@ borders and decorative fields.
 
 - Use a full-height split screen: a tactile show-poster image on the left and a
   calm paper editorial panel on the right.
-- The poster combines the real studio photograph, illustrated show artwork,
-  restrained grid texture and small Dubai coordinates.
+- The poster uses an editorial grid of real Episode 1 frame grabs: one
+  three-person wide plus individual Pranav, Mustapha and Pavle close-ups. Use
+  the illustrated logo only in the site identity, not as a substitute for the
+  hosts throughout the page.
 - Lead with the genre proposition, then one latest-episode action and one
   archive action. Platform links remain visible but secondary.
 - The current episode label is data-driven and may truncate to one line only in
@@ -88,6 +90,8 @@ borders and decorative fields.
 - Older releases flow into a three-column desktop grid and a single-column
   mobile list automatically.
 - Cards link to durable episode pages; external watch/listen links are secondary.
+- When a platform thumbnail is unavailable, use a different real podcast frame
+  rather than repeating the hero or host imagery.
 
 ### Platform links
 

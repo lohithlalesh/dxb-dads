@@ -49,7 +49,7 @@ export default async function EpisodesPage() {
           <article className="archive-card" key={episode.slug}>
             <Link className="archive-media" href={`/episodes/${episode.slug}`}>
               <Image
-                src={episode.youtube?.thumbnail ?? "/dxb-dads-studio.png"}
+                src={episode.youtube?.thumbnail ?? "/podcast-conversation.jpg"}
                 alt=""
                 fill
                 sizes="(max-width: 860px) 100vw, 50vw"
