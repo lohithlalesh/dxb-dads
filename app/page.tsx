@@ -100,7 +100,7 @@ export default async function Home() {
         Skip to content
       </a>
 
-      <section className="hero" id="home" aria-labelledby="hero-title">
+      <section className="hero split-hero" id="home" aria-labelledby="hero-title">
         <header className="site-header">
           <a className="wordmark" href="#home" aria-label="DXB Dads home">
             <Image
@@ -113,10 +113,9 @@ export default async function Home() {
             />
           </a>
           <nav aria-label="Primary navigation">
-            <a href="#latest">Latest</a>
+            <a href="#about">The show</a>
             <Link href="/episodes">Episodes</Link>
             <a href="#dads">The dads</a>
-            <a href="#about">Our story</a>
           </nav>
           <a
             className="nav-cta"
@@ -129,67 +128,86 @@ export default async function Home() {
           </a>
         </header>
 
-        <div className="hero-content" id="content">
-          <div className="hero-copy">
-            <p className="hero-kicker">
-              DXB Dads <span>Podcast · Dubai</span>
-            </p>
-            <h1 id="hero-title">
-              <span className="title-line">THREE DADS.</span>
-              <span className="title-line title-gold">ONE HONEST TABLE.</span>
-            </h1>
-            <p className="hero-deck">
-              Three cultures. Dubai life. Real conversations about fatherhood,
-              manhood, friendship and family—without the polished answers.
-            </p>
-            <div className="hero-actions">
-              <Link className="hero-primary" href={`/episodes/${latest.slug}`}>
-                Start with the latest <Arrow />
-              </Link>
-              <Link className="hero-secondary" href="/episodes">
-                All episodes <Arrow direction="down" />
-              </Link>
-            </div>
-          </div>
-
-          <div
-            className="hero-visual"
-            aria-label="Pranav, Mustapha and Pavle recording DXB Dads"
-          >
-            <div className="hero-disc" aria-hidden="true" />
-            <div className="hero-rule" aria-hidden="true" />
+        <div className="split-hero-grid" id="content">
+          <div className="show-poster">
             <Image
-              className="hero-cutout"
-              src="/dxb-dads-cutout.png"
-              alt="Pranav, Mustapha and Pavle recording the DXB Dads podcast"
+              className="show-poster-photo"
+              src="/dxb-dads-studio.png"
+              alt="Pranav, Mustapha and Pavle recording DXB Dads in their Dubai studio"
               width={1537}
               height={1023}
-              sizes="(max-width: 860px) 100vw, 62vw"
+              sizes="(max-width: 860px) 100vw, 50vw"
               priority
             />
-            <div className="hero-stat" aria-hidden="true">
-              <strong>03</strong>
-              <span>Dads</span>
-              <span>Cultures</span>
-              <span>Points of view</span>
+            <div className="show-poster-scrim" aria-hidden="true" />
+            <div className="show-poster-frame" aria-hidden="true" />
+            <Image
+              className="show-poster-logo"
+              src="/dxb-dads-logo-clean.png"
+              alt="DXB Dads — real dads, real talk, Dubai life"
+              width={1254}
+              height={1254}
+              sizes="(max-width: 860px) 74vw, 38vw"
+              priority
+            />
+            <p className="poster-coordinate" aria-hidden="true">
+              25° 12′ N · 55° 16′ E
+            </p>
+            <div className="poster-stamp" aria-hidden="true">
+              <span>Original podcast</span>
+              <strong>DXB / 2026</strong>
             </div>
-            <Link className="hero-now-playing" href={`/episodes/${latest.slug}`}>
-              <span className="play-mark" aria-hidden="true">
-                ▶
-              </span>
-              <span>
-                <small>Latest conversation</small>
-                <strong>{shortEpisodeTitle(latest.title)}</strong>
-              </span>
-            </Link>
-            <span className="hero-place" aria-hidden="true">
-              Dubai / UAE
-            </span>
           </div>
-        </div>
 
-        <div className="hero-side-note" aria-hidden="true">
-          25° 12′ N&nbsp;&nbsp;55° 16′ E
+          <div className="hero-editorial">
+            <div className="hero-editorial-inner">
+              <p className="hero-kicker">
+                Three dads <span>Three cultures · Dubai life</span>
+              </p>
+              <h1 id="hero-title">
+                <strong>A FATHERHOOD</strong>
+                <br />
+                PODCAST WITHOUT
+                <br />
+                <span>THE FILTER.</span>
+              </h1>
+              <p className="hero-deck">
+                Pranav, Mustapha and Pavle compare notes on fatherhood,
+                manhood, friendship and family—with sharp opinions, real
+                stories and no polished answers.
+              </p>
+              <div className="hero-actions">
+                <Link className="hero-primary" href={`/episodes/${latest.slug}`}>
+                  Start with the latest <Arrow />
+                </Link>
+                <Link className="hero-secondary" href="/episodes">
+                  All episodes <Arrow direction="down" />
+                </Link>
+              </div>
+
+              <div className="hero-listen" aria-label="Listen to DXB Dads on">
+                <span>Listen on</span>
+                <a href={PODCAST.spotify} target="_blank" rel="noreferrer">
+                  Spotify
+                </a>
+                <a href={PODCAST.apple} target="_blank" rel="noreferrer">
+                  Apple Podcasts
+                </a>
+                <a href={PODCAST.youtube} target="_blank" rel="noreferrer">
+                  YouTube
+                </a>
+              </div>
+
+              <Link className="editorial-now-playing" href={`/episodes/${latest.slug}`}>
+                <span className="play-mark" aria-hidden="true">▶</span>
+                <span>
+                  <small>[ Latest conversation ]</small>
+                  <strong>{shortEpisodeTitle(latest.title)}</strong>
+                </span>
+                <Arrow />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
