@@ -14,6 +14,12 @@ export const revalidate = 900;
 const ticker =
   "FATHERHOOD  •  MANHOOD  •  FRIENDSHIP  •  FAMILY  •  DUBAI  •  REAL TALK  •  ";
 
+const HOST_IMAGES = {
+  left: "/podcast-pranav.jpg",
+  center: "/podcast-mustapha.jpg",
+  right: "/podcast-pavle.jpg",
+} as const;
+
 function Arrow({ direction = "out" }: { direction?: "out" | "down" }) {
   return <span aria-hidden="true">{direction === "down" ? "↓" : "↗"}</span>;
 }
@@ -130,26 +136,50 @@ export default async function Home() {
 
         <div className="split-hero-grid" id="content">
           <div className="show-poster">
-            <Image
-              className="show-poster-photo"
-              src="/dxb-dads-studio.png"
-              alt="Pranav, Mustapha and Pavle recording DXB Dads in their Dubai studio"
-              width={1537}
-              height={1023}
-              sizes="(max-width: 860px) 100vw, 50vw"
-              priority
-            />
+            <div className="show-poster-collage">
+              <div className="poster-wide-shot">
+                <Image
+                  src="/podcast-wide-02.jpg"
+                  alt="Pranav, Mustapha and Pavle in conversation on DXB Dads"
+                  fill
+                  sizes="(max-width: 820px) 100vw, 50vw"
+                  priority
+                />
+              </div>
+              <div className="poster-person-shot poster-pranav">
+                <Image
+                  src="/podcast-pranav.jpg"
+                  alt="Pranav speaking on the DXB Dads podcast"
+                  fill
+                  sizes="(max-width: 820px) 33vw, 17vw"
+                  priority
+                />
+              </div>
+              <div className="poster-person-shot poster-mustapha">
+                <Image
+                  src="/podcast-mustapha.jpg"
+                  alt="Mustapha speaking on the DXB Dads podcast"
+                  fill
+                  sizes="(max-width: 820px) 33vw, 17vw"
+                  priority
+                />
+              </div>
+              <div className="poster-person-shot poster-pavle">
+                <Image
+                  src="/podcast-pavle.jpg"
+                  alt="Pavle speaking on the DXB Dads podcast"
+                  fill
+                  sizes="(max-width: 820px) 33vw, 17vw"
+                  priority
+                />
+              </div>
+            </div>
             <div className="show-poster-scrim" aria-hidden="true" />
             <div className="show-poster-frame" aria-hidden="true" />
-            <Image
-              className="show-poster-logo"
-              src="/dxb-dads-logo-clean.png"
-              alt="DXB Dads — real dads, real talk, Dubai life"
-              width={1254}
-              height={1254}
-              sizes="(max-width: 860px) 74vw, 38vw"
-              priority
-            />
+            <div className="poster-wordmark" aria-hidden="true">
+              <strong>DXB.DADS</strong>
+              <span>Real dads · Real life · Real talk</span>
+            </div>
             <p className="poster-coordinate" aria-hidden="true">
               25° 12′ N · 55° 16′ E
             </p>
@@ -266,7 +296,7 @@ export default async function Home() {
             aria-label={`${latest.youtube ? "Watch" : "Listen to"} ${latest.title}`}
           >
             <Image
-              src={latest.youtube?.thumbnail ?? "/dxb-dads-studio.png"}
+              src={latest.youtube?.thumbnail ?? "/podcast-wide-01.jpg"}
               alt=""
               fill
               sizes="(max-width: 960px) 100vw, 58vw"
@@ -313,7 +343,7 @@ export default async function Home() {
                 <article className="recent-card" key={episode.slug}>
                   <Link className="recent-image" href={`/episodes/${episode.slug}`}>
                     <Image
-                      src={episode.youtube?.thumbnail ?? "/dxb-dads-studio.png"}
+                      src={episode.youtube?.thumbnail ?? "/podcast-conversation.jpg"}
                       alt=""
                       fill
                       sizes="(max-width: 720px) 100vw, 33vw"
@@ -342,7 +372,7 @@ export default async function Home() {
         <div className="studio-photo-wrap">
           <Image
             className="studio-photo"
-            src="/dxb-dads-studio.png"
+            src="/podcast-wide-01.jpg"
             alt="Pranav, Mustapha and Pavle recording in the DXB Dads studio"
             fill
             sizes="(max-width: 960px) 100vw, 58vw"
@@ -394,9 +424,8 @@ export default async function Home() {
             <article className="host-card" key={host.name}>
               <div className={`host-portrait host-${host.position}`}>
                 <Image
-                  src="/dxb-dads-studio.png"
-                  alt=""
-                  aria-hidden="true"
+                  src={HOST_IMAGES[host.position]}
+                  alt={`${host.name} speaking on DXB Dads`}
                   fill
                   sizes="(max-width: 860px) 100vw, 33vw"
                 />

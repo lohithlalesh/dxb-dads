@@ -53,7 +53,10 @@ test("server-renders the finished DXB Dads landing page", async () => {
   assert.match(html, /https:\/\/open\.spotify\.com\/show\/033XRlOY44hvb5tbVHd6e1/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /\/dxb-dads-logo-clean\.png/);
-  assert.match(html, /\/dxb-dads-studio\.png/);
+  assert.match(html, /\/podcast-wide-02\.jpg/);
+  assert.match(html, /\/podcast-pranav\.jpg/);
+  assert.match(html, /\/podcast-mustapha\.jpg/);
+  assert.match(html, /\/podcast-pavle\.jpg/);
   assert.match(html, /class="hero split-hero"/);
   assert.match(html, /A FATHERHOOD/);
   assert.match(html, /https:\/\/dxb-dads\.example\/og\.png/);
@@ -73,6 +76,12 @@ test("removes the disposable starter and keeps accessibility motion controls", a
   await access(new URL("../public/dxb-dads-studio.png", import.meta.url));
   await access(new URL("../public/dxb-dads-logo-clean.png", import.meta.url));
   await access(new URL("../public/dxb-dads-cutout.png", import.meta.url));
+  await access(new URL("../public/podcast-wide-01.jpg", import.meta.url));
+  await access(new URL("../public/podcast-wide-02.jpg", import.meta.url));
+  await access(new URL("../public/podcast-pranav.jpg", import.meta.url));
+  await access(new URL("../public/podcast-mustapha.jpg", import.meta.url));
+  await access(new URL("../public/podcast-pavle.jpg", import.meta.url));
+  await access(new URL("../public/podcast-conversation.jpg", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
   await access(new URL("../public/llms.txt", import.meta.url));
   await access(new URL("../public/llms-full.txt", import.meta.url));

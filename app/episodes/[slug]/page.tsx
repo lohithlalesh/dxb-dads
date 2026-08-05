@@ -116,7 +116,7 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
             />
           ) : (
             <div className="audio-poster">
-              <Image src="/dxb-dads-studio.png" alt="The DXB Dads studio" fill sizes="100vw" />
+              <Image src="/podcast-wide-01.jpg" alt="The DXB Dads recording in their Dubai studio" fill sizes="100vw" />
             </div>
           )}
         </div>
