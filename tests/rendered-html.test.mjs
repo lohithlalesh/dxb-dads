@@ -53,7 +53,9 @@ test("server-renders the finished DXB Dads landing page", async () => {
   assert.match(html, /https:\/\/open\.spotify\.com\/show\/033XRlOY44hvb5tbVHd6e1/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /\/dxb-dads-logo-clean\.png/);
-  assert.match(html, /\/dxb-dads-cutout\.png/);
+  assert.match(html, /\/dxb-dads-studio\.png/);
+  assert.match(html, /class="hero split-hero"/);
+  assert.match(html, /A FATHERHOOD/);
   assert.match(html, /https:\/\/dxb-dads\.example\/og\.png/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });

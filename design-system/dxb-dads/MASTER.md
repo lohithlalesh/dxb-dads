@@ -72,9 +72,12 @@ borders and decorative fields.
 
 ### Hero
 
-- Use the three-host cutout, gold disc and restrained grid texture.
-- Lead with the show proposition, then one latest-episode action and one archive
-  action.
+- Use a full-height split screen: a tactile show-poster image on the left and a
+  calm paper editorial panel on the right.
+- The poster combines the real studio photograph, illustrated show artwork,
+  restrained grid texture and small Dubai coordinates.
+- Lead with the genre proposition, then one latest-episode action and one
+  archive action. Platform links remain visible but secondary.
 - The current episode label is data-driven and may truncate to one line only in
   the compact now-playing control.
 
