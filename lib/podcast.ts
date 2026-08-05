@@ -184,23 +184,20 @@ function matchYouTubeVideo(
 
 async function fetchYouTubeVideos(): Promise<YouTubeVideo[]> {
   try {
-    const response = await fetch(`${PODCAST.youtube}/videos`, {
+    const response = await fetch(
+      `https://www.youtube.com/feeds/videos.xml?channel_id=${PODCAST.youtubeChannelId}`,
+      {
       headers: { "user-agent": "Mozilla/5.0 DXBDadsWebsite/1.0" },
       next: { revalidate: 900 },
-    });
+      },
+    );
     if (!response.ok) return KNOWN_YOUTUBE;
-    const html = await response.text();
+    const xml = await response.text();
     const found = new Map<string, YouTubeVideo>();
-    const matcher =
-      /"videoId":"([^"]+)"[\s\S]{0,2400}?"title":\{"runs":\[\{"text":"((?:\\.|[^"])*)"/g;
-    for (const match of html.matchAll(matcher)) {
-      const id = match[1];
-      let title = match[2];
-      try {
-        title = JSON.parse(`"${title}"`);
-      } catch {
-        title = decodeEntities(title);
-      }
+    for (const entry of xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)) {
+      const id = tag(entry[1], "yt:videoId");
+      const title = plainText(tag(entry[1], "title"));
+      if (!id || !title) continue;
       if (!found.has(id)) {
         found.set(id, {
           id,

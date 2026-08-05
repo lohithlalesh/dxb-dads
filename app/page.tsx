@@ -6,41 +6,70 @@ import {
   HOSTS,
   PODCAST,
   shortEpisodeTitle,
+  type Episode,
 } from "../lib/podcast";
 
 export const revalidate = 900;
 
-function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+const ticker =
+  "FATHERHOOD  •  MANHOOD  •  FRIENDSHIP  •  FAMILY  •  DUBAI  •  REAL TALK  •  ";
+
+function Arrow({ direction = "out" }: { direction?: "out" | "down" }) {
+  return <span aria-hidden="true">{direction === "down" ? "↓" : "↗"}</span>;
 }
 
-function PlatformLinks({ compact = false }: { compact?: boolean }) {
+function episodeLabel(episode: Episode) {
+  if (episode.type === "trailer") return "Official trailer";
+  if (episode.type === "bonus") return "Bonus episode";
+  return `Season ${String(episode.seasonNumber ?? 1).padStart(2, "0")} · Episode ${String(episode.episodeNumber ?? 1).padStart(2, "0")}`;
+}
+
+function episodeExcerpt(value: string) {
+  const lines = value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .filter(
+      (line) =>
+        line.length > 35 &&
+        !/^(welcome|follow|hosted by|if you enjoy|copyright|all original|unauthorized|sharing this|dxbdads™)/i.test(
+          line,
+        ) &&
+        !line.startsWith("#"),
+    );
+  const excerpt = lines.slice(0, 3).join(" ");
+  if (!excerpt) return PODCAST.description;
+  return excerpt.length > 280 ? `${excerpt.slice(0, 277).trim()}…` : excerpt;
+}
+
+function PlatformLinks() {
+  const platforms = [
+    { name: "YouTube", note: "Watch full episodes", url: PODCAST.youtube },
+    { name: "Spotify", note: "Listen and follow", url: PODCAST.spotify },
+    { name: "Apple Podcasts", note: "Listen and follow", url: PODCAST.apple },
+  ];
+
   return (
-    <div className={compact ? "platform-links compact" : "platform-links"}>
-      <a href={PODCAST.youtube} target="_blank" rel="noreferrer">
-        <span className="platform-dot youtube-dot" aria-hidden="true" />
-        YouTube <Arrow />
-      </a>
-      <a href={PODCAST.spotify} target="_blank" rel="noreferrer">
-        <span className="platform-dot spotify-dot" aria-hidden="true" />
-        Spotify <Arrow />
-      </a>
-      <a href={PODCAST.apple} target="_blank" rel="noreferrer">
-        <span className="platform-dot apple-dot" aria-hidden="true" />
-        Apple Podcasts <Arrow />
-      </a>
+    <div className="platform-grid" aria-label="Listen to DXB Dads">
+      {platforms.map((platform) => (
+        <a key={platform.name} href={platform.url} target="_blank" rel="noreferrer">
+          <span>{platform.note}</span>
+          <strong>{platform.name}</strong>
+          <Arrow />
+        </a>
+      ))}
     </div>
   );
 }
 
 export default async function Home() {
   const episodes = await getEpisodes();
-  const fullEpisodes = episodes.filter((episode) => episode.type === "full");
-  const latest = fullEpisodes[0] ?? episodes[0];
-  const latestUrl = latest.youtube?.url ?? latest.spotifyUrl;
-  const hasEpisodeTwo = fullEpisodes.some(
-    (episode) => (episode.episodeNumber ?? 0) >= 2,
-  );
+  const latest =
+    episodes.find((episode) => episode.type === "full") ?? episodes[0];
+  const recent = episodes
+    .filter((episode) => episode.slug !== latest.slug)
+    .slice(0, 3);
+  const latestWatchUrl = latest.youtube?.url ?? latest.spotifyUrl;
 
   const seriesSchema = {
     "@context": "https://schema.org",
@@ -71,182 +100,258 @@ export default async function Home() {
         Skip to content
       </a>
 
-      <header className="site-header" id="home">
-        <a className="wordmark" href="#home" aria-label="DXB Dads home">
-          <Image src="/dxb-dads-logo-clean.png" alt="DXB Dads" width={1254} height={1254} sizes="78px" />
-        </a>
-        <nav aria-label="Primary navigation">
-          <a href="#episodes">Episodes</a>
-          <a href="#dads">The dads</a>
-          <a href="#about">About</a>
-        </nav>
-        <a className="header-listen" href={latestUrl} target="_blank" rel="noreferrer">
-          Listen now <Arrow />
-        </a>
-      </header>
+      <section className="hero" id="home" aria-labelledby="hero-title">
+        <header className="site-header">
+          <a className="wordmark" href="#home" aria-label="DXB Dads home">
+            <Image
+              src="/dxb-dads-logo-clean.png"
+              alt="DXB Dads"
+              width={1254}
+              height={1254}
+              sizes="78px"
+              priority
+            />
+          </a>
+          <nav aria-label="Primary navigation">
+            <a href="#latest">Latest</a>
+            <Link href="/episodes">Episodes</Link>
+            <a href="#dads">The dads</a>
+            <a href="#about">Our story</a>
+          </nav>
+          <a
+            className="nav-cta"
+            href={latestWatchUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>{latest.youtube ? "Watch latest" : "Listen now"}</span>
+            <Arrow />
+          </a>
+        </header>
 
-      <section className="hero" id="content" aria-labelledby="hero-title">
-        <div className="hero-grid">
+        <div className="hero-content" id="content">
           <div className="hero-copy">
-            <p className="eyebrow">
-              <span>DXB Dads Podcast</span>
-              <span>Dubai · UAE</span>
+            <p className="hero-kicker">
+              DXB Dads <span>Podcast · Dubai</span>
             </p>
             <h1 id="hero-title">
-              REAL DADS.
-              <br />
-              <span>REAL LIFE.</span>
-              <br />
-              REAL TALK.
+              <span className="title-line">THREE DADS.</span>
+              <span className="title-line title-gold">ONE HONEST TABLE.</span>
             </h1>
-            <p className="hero-summary">
-              Three dads. Three cultures. One honest table. Fatherhood,
-              manhood, friendship and family life in Dubai—without the polished
-              answers.
+            <p className="hero-deck">
+              Three cultures. Dubai life. Real conversations about fatherhood,
+              manhood, friendship and family—without the polished answers.
             </p>
             <div className="hero-actions">
-              <a className="button primary" href={latestUrl} target="_blank" rel="noreferrer">
-                {latest.youtube ? "Watch the latest episode" : "Play the latest episode"}
-                <Arrow />
-              </a>
-              <a className="button secondary" href="#episodes">
-                Explore episodes <span aria-hidden="true">↓</span>
-              </a>
+              <Link className="hero-primary" href={`/episodes/${latest.slug}`}>
+                Start with the latest <Arrow />
+              </Link>
+              <Link className="hero-secondary" href="/episodes">
+                All episodes <Arrow direction="down" />
+              </Link>
             </div>
-            <PlatformLinks compact />
           </div>
 
-          <div className="hero-visual" aria-label="Pranav, Mustapha and Pavle recording DXB Dads">
-            <div className="hero-orbit" aria-hidden="true" />
-            <div className="hero-stamp" aria-hidden="true">
-              <strong>03</strong>
-              <span>Dads</span>
-              <span>One city</span>
-            </div>
+          <div
+            className="hero-visual"
+            aria-label="Pranav, Mustapha and Pavle recording DXB Dads"
+          >
+            <div className="hero-disc" aria-hidden="true" />
+            <div className="hero-rule" aria-hidden="true" />
             <Image
+              className="hero-cutout"
               src="/dxb-dads-cutout.png"
               alt="Pranav, Mustapha and Pavle recording the DXB Dads podcast"
               width={1537}
               height={1023}
-              sizes="(max-width: 860px) 98vw, 58vw"
+              sizes="(max-width: 860px) 100vw, 62vw"
               priority
             />
-            <div className="now-playing">
-              <span className="playing-icon" aria-hidden="true">▶</span>
+            <div className="hero-stat" aria-hidden="true">
+              <strong>03</strong>
+              <span>Dads</span>
+              <span>Cultures</span>
+              <span>Points of view</span>
+            </div>
+            <Link className="hero-now-playing" href={`/episodes/${latest.slug}`}>
+              <span className="play-mark" aria-hidden="true">
+                ▶
+              </span>
               <span>
-                <small>Now playing</small>
+                <small>Latest conversation</small>
                 <strong>{shortEpisodeTitle(latest.title)}</strong>
               </span>
-            </div>
+            </Link>
+            <span className="hero-place" aria-hidden="true">
+              Dubai / UAE
+            </span>
           </div>
         </div>
-        <p className="hero-coordinate" aria-hidden="true">
-          25.2048° N / 55.2708° E
-        </p>
+
+        <div className="hero-side-note" aria-hidden="true">
+          25° 12′ N&nbsp;&nbsp;55° 16′ E
+        </div>
       </section>
 
-      <div className="ticker" aria-hidden="true">
-        <div className="ticker-track">
-          <span>FATHERHOOD · MANHOOD · FRIENDSHIP · FAMILY · DUBAI · REAL TALK · </span>
-          <span>FATHERHOOD · MANHOOD · FRIENDSHIP · FAMILY · DUBAI · REAL TALK · </span>
+      <div
+        className="ticker"
+        aria-label="Fatherhood, manhood, friendship, family, Dubai and real talk"
+      >
+        <div className="ticker-track" aria-hidden="true">
+          <span>{ticker}</span>
+          <span>{ticker}</span>
+          <span>{ticker}</span>
         </div>
       </div>
 
-      <section className="latest" id="episodes" aria-labelledby="latest-title">
+      <section className="intro" id="about" aria-labelledby="intro-title">
+        <p className="section-label">[ THE SHORT VERSION ]</p>
+        <h2 id="intro-title">
+          BUILT IN DUBAI.
+          <br />
+          <em>RAISED ON REAL TALK.</em>
+        </h2>
+        <div className="intro-copy">
+          <p className="intro-lede">
+            Three fathers from different cultures comparing notes on family,
+            identity and the city they call home.
+          </p>
+          <p>
+            No gurus. No perfect-parent performances. Just sharp opinions,
+            spectacular detours and the kind of honesty that usually arrives
+            after the microphones switch off.
+          </p>
+        </div>
+      </section>
+
+      <section className="latest" id="latest" aria-labelledby="latest-title">
         <div className="section-heading">
           <div>
             <p className="section-label">[ LATEST CONVERSATION ]</p>
-            <h2 id="latest-title">PRESS PLAY.<br /><span>STAY FOR THE TRUTH.</span></h2>
+            <h2 id="latest-title">
+              PRESS PLAY.
+              <br />
+              <span>STAY FOR THE TRUTH.</span>
+            </h2>
           </div>
           <Link className="text-link" href="/episodes">
-            View every episode <Arrow />
+            Browse every episode <Arrow />
           </Link>
         </div>
 
         <article className="featured-episode">
           <a
             className="episode-media"
-            href={latest.youtube?.url ?? `/episodes/${latest.slug}`}
-            target={latest.youtube ? "_blank" : undefined}
-            rel={latest.youtube ? "noreferrer" : undefined}
-            aria-label={`Watch ${latest.title}`}
+            href={latestWatchUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${latest.youtube ? "Watch" : "Listen to"} ${latest.title}`}
           >
             <Image
               src={latest.youtube?.thumbnail ?? "/dxb-dads-studio.png"}
               alt=""
               fill
-              sizes="(max-width: 1120px) 100vw, 62vw"
+              sizes="(max-width: 960px) 100vw, 58vw"
             />
-            <span className="play-button" aria-hidden="true">▶</span>
-            <span className="media-corner">Full episode</span>
+            <span className="play-button" aria-hidden="true">
+              ▶
+            </span>
+            <span className="media-corner">
+              {latest.youtube ? "Watch full episode" : "Listen to episode"}
+            </span>
           </a>
           <div className="episode-content">
             <p className="episode-meta">
-              Season {String(latest.seasonNumber ?? 1).padStart(2, "0")} · Episode {String(latest.episodeNumber ?? 1).padStart(2, "0")} · {formatEpisodeDate(latest.publishedAt)}
+              {episodeLabel(latest)} · {formatEpisodeDate(latest.publishedAt)}
             </p>
-            <h3>{latest.title}</h3>
+            <h3>{shortEpisodeTitle(latest.title)}</h3>
             <p className="episode-description">
-              Dubai summer. Kids at home. Temperatures through the roof. The dads
-              compare notes on routines, activities, screen time, travel and
-              maintaining some version of sanity.
+              {episodeExcerpt(latest.description)}
             </p>
-            <div className="topic-chips" aria-label="Episode topics">
-              <span>Dubai summer</span>
-              <span>Screen time</span>
-              <span>Family routines</span>
-              <span>Dad survival</span>
-            </div>
             <div className="episode-actions">
-              <a className="button primary dark" href={`/episodes/${latest.slug}`}>
+              <Link className="button primary dark" href={`/episodes/${latest.slug}`}>
                 Episode notes <Arrow />
-              </a>
-              <a className="button ghost" href={latest.spotifyUrl} target="_blank" rel="noreferrer">
+              </Link>
+              <a
+                className="button ghost"
+                href={latest.spotifyUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Listen on Spotify <Arrow />
               </a>
             </div>
           </div>
         </article>
 
-        {!hasEpisodeTwo && (
-          <article className="up-next">
-            <div>
-              <p className="section-label">[ EPISODE 02 · COMING NEXT ]</p>
-              <h3>FAMILY HOLIDAYS AREN&apos;T HOLIDAYS.</h3>
+        {recent.length > 0 && (
+          <div className="recent-block">
+            <div className="recent-heading">
+              <p className="section-label">[ MORE FROM THE TABLE ]</p>
+              <p>New releases move to the front automatically.</p>
             </div>
-            <p>
-              Travelling with kids: upgrade dreams, endless snacks and the chaos
-              that begins before you even reach the destination.
-            </p>
-            <span className="up-next-mark" aria-hidden="true">02</span>
-          </article>
+            <div className="recent-grid">
+              {recent.map((episode) => (
+                <article className="recent-card" key={episode.slug}>
+                  <Link className="recent-image" href={`/episodes/${episode.slug}`}>
+                    <Image
+                      src={episode.youtube?.thumbnail ?? "/dxb-dads-studio.png"}
+                      alt=""
+                      fill
+                      sizes="(max-width: 720px) 100vw, 33vw"
+                    />
+                    <span>{episodeLabel(episode)}</span>
+                  </Link>
+                  <div>
+                    <p>{formatEpisodeDate(episode.publishedAt)}</p>
+                    <h3>
+                      <Link href={`/episodes/${episode.slug}`}>
+                        {shortEpisodeTitle(episode.title)}
+                      </Link>
+                    </h3>
+                    <Link className="card-link" href={`/episodes/${episode.slug}`}>
+                      Open episode <Arrow />
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         )}
       </section>
 
-      <section className="studio-section" id="about" aria-labelledby="about-title">
-        <div className="studio-image">
+      <section className="studio-story" aria-label="Inside the DXB Dads studio">
+        <div className="studio-photo-wrap">
           <Image
+            className="studio-photo"
             src="/dxb-dads-studio.png"
-            alt="The DXB Dads recording in their brick-walled Dubai studio"
+            alt="Pranav, Mustapha and Pavle recording in the DXB Dads studio"
             fill
-            sizes="(max-width: 1120px) 100vw, 55vw"
+            sizes="(max-width: 960px) 100vw, 58vw"
           />
-          <span className="on-air"><i aria-hidden="true" /> On air / Dubai</span>
+          <div className="photo-badge" aria-hidden="true">
+            <span>ON AIR</span>
+            <small>DXB / UAE</small>
+          </div>
         </div>
         <div className="studio-copy">
-          <p className="section-label">[ WHY DXB DADS ]</p>
-          <h2 id="about-title">THE CONVERSATIONS MEN HAVE<br /><span>WHEN THE SCRIPT RUNS OUT.</span></h2>
+          <p className="section-label">[ ON MIC / OFF SCRIPT ]</p>
+          <h2>
+            REAL DADS.
+            <br />
+            <span>REAL LIFE.</span>
+          </h2>
           <p className="studio-lede">
-            DXB Dads is where three fathers from different cultures compare
-            notes on raising families in one of the world&apos;s fastest-moving cities.
+            The conversations men have when the script runs out.
           </p>
           <p>
-            No gurus. No perfect-parent performances. Just honest stories about
-            fatherhood, identity, friendship, relationships, work and the
-            beautifully chaotic reality of family life in Dubai.
+            Fatherhood, identity, friendship, relationships, work and the
+            beautifully chaotic reality of raising a family in one of the
+            world&apos;s fastest-moving cities.
           </p>
-          <div className="pillars" aria-label="DXB Dads themes">
-            <span>Fatherhood</span><span>Manhood</span><span>Friendship</span><span>Real talk</span>
-          </div>
+          <a className="text-link light" href="#dads">
+            Meet the trio <Arrow />
+          </a>
         </div>
       </section>
 
@@ -254,7 +359,11 @@ export default async function Home() {
         <div className="section-heading hosts-heading">
           <div>
             <p className="section-label">[ THREE CULTURES · ONE TABLE ]</p>
-            <h2 id="hosts-title">MEET<br /><span>THE DADS.</span></h2>
+            <h2 id="hosts-title">
+              MEET
+              <br />
+              <span>THE DADS.</span>
+            </h2>
           </div>
           <p>
             Different backgrounds. Different opinions. The same commitment to
@@ -266,76 +375,81 @@ export default async function Home() {
           {HOSTS.map((host, index) => (
             <article className="host-card" key={host.name}>
               <div className={`host-portrait host-${host.position}`}>
-                <Image src="/dxb-dads-studio.png" alt="" aria-hidden="true" fill sizes="(max-width: 860px) 100vw, 33vw" />
+                <Image
+                  src="/dxb-dads-studio.png"
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  sizes="(max-width: 860px) 100vw, 33vw"
+                />
                 <span>{String(index + 1).padStart(2, "0")}</span>
               </div>
               <div className="host-info">
                 <p>{host.label}</p>
-                <h3>{host.name}{host.nickname && <small>“{host.nickname}”</small>}</h3>
+                <h3>
+                  {host.name}
+                  {host.nickname && <small>“{host.nickname}”</small>}
+                </h3>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="follow" aria-labelledby="follow-title">
-        <div>
-          <p className="section-label">[ NEVER MISS A CONVERSATION ]</p>
-          <h2 id="follow-title">FOLLOW ONCE.<br /><span>GET EVERY EPISODE.</span></h2>
+      <section className="listen" id="listen" aria-labelledby="listen-title">
+        <div className="listen-copy">
+          <p className="section-label">[ PULL UP A CHAIR ]</p>
+          <h2 id="listen-title">
+            FOLLOW ONCE.
+            <br />
+            <span>MISS NOTHING.</span>
+          </h2>
           <p>
-            New releases, clips and the conversations that continue after the
-            microphones switch off.
+            Follow DXB Dads on your preferred platform. Every new episode will
+            also appear on this site automatically.
           </p>
         </div>
         <PlatformLinks />
-        <a className="instagram-card" href={PODCAST.instagram} target="_blank" rel="noreferrer">
-          <span>Daily clips &amp; behind the scenes</span>
+        <a
+          className="instagram-card"
+          href={PODCAST.instagram}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span>Clips &amp; behind the scenes</span>
           <strong>@dxb.dads</strong>
           <Arrow />
         </a>
       </section>
 
-      <section className="faq" aria-labelledby="faq-title">
-        <div>
-          <p className="section-label">[ QUICK ANSWERS ]</p>
-          <h2 id="faq-title">NEW HERE?</h2>
-        </div>
-        <div className="faq-list">
-          <details open>
-            <summary>What is DXB Dads?</summary>
-            <p>
-              A Dubai podcast hosted by Pranav, Mustapha and Pavle about
-              fatherhood, manhood, friendship, family and real life in the UAE.
-            </p>
-          </details>
-          <details>
-            <summary>Where can I watch or listen?</summary>
-            <p>
-              Watch full video episodes on YouTube, or listen on Spotify and
-              Apple Podcasts. Every released episode is collected on this site.
-            </p>
-          </details>
-          <details>
-            <summary>How do I suggest a topic or guest?</summary>
-            <p>
-              Send a message on Instagram at @dxb.dads or email us at
-              dxb.dads@gmail.com.
-            </p>
-          </details>
-        </div>
-      </section>
-
       <footer>
         <a className="footer-brand" href="#home" aria-label="DXB Dads home">
-          <Image src="/dxb-dads-logo-clean.png" alt="DXB Dads" width={1254} height={1254} sizes="94px" />
-          <span>Real dads. Real life. Real talk.</span>
+          <Image
+            src="/dxb-dads-logo-clean.png"
+            alt="DXB Dads"
+            width={1254}
+            height={1254}
+            sizes="94px"
+          />
+          <span>Three dads. Three cultures. Dubai life.</span>
         </a>
         <div className="footer-links">
           <Link href="/episodes">Episodes</Link>
-          <a href={PODCAST.youtube} target="_blank" rel="noreferrer">YouTube</a>
-          <a href={PODCAST.spotify} target="_blank" rel="noreferrer">Spotify</a>
-          <a href={PODCAST.apple} target="_blank" rel="noreferrer">Apple Podcasts</a>
-          <a href={PODCAST.rss} target="_blank" rel="noreferrer">RSS</a>
+          <a href={PODCAST.youtube} target="_blank" rel="noreferrer">
+            YouTube
+          </a>
+          <a href={PODCAST.spotify} target="_blank" rel="noreferrer">
+            Spotify
+          </a>
+          <a href={PODCAST.apple} target="_blank" rel="noreferrer">
+            Apple Podcasts
+          </a>
+          <a href={PODCAST.instagram} target="_blank" rel="noreferrer">
+            Instagram
+          </a>
+          <a href={PODCAST.rss} target="_blank" rel="noreferrer">
+            RSS
+          </a>
           <a href={`mailto:${PODCAST.email}`}>Contact</a>
         </div>
         <div className="footer-bottom">
