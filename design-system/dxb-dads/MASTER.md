@@ -4,7 +4,7 @@ This is the source of truth for future site changes. Page-specific files in
 `pages/` may override it when a route needs a deliberate exception.
 
 **Product:** Podcast discovery and publishing hub  
-**Direction:** Editorial cinema — warm, tactile, direct, spacious  
+**Direction:** Editorial cinema — warm, chromatic, tactile, spacious
 **Design dials:** Variance 6/10 · Motion 4/10 · Density 3/10
 
 ## Experience principles
@@ -26,16 +26,18 @@ This is the source of truth for future site changes. Page-specific files in
 | Role | Token | Value |
 |---|---|---|
 | Cinematic background | `--ink` | `#0d0b09` |
-| Warm dark surface | `--ink-soft` | `#151210` |
-| Raised dark surface | `--ink-raised` | `#1c1815` |
-| Warm off-white text | `--paper`, `--white` | `#f5f0e8` |
-| Secondary text | `--muted` | `rgba(245,240,232,.62)` |
-| Burnt amber accent | `--gold` | `#c98642` |
-| Hairline | `--line-light`, `--line-dark` | `rgba(245,240,232,.08)` |
+| Deep navigation blue | `--navy` | `#071d2a` |
+| Warm dark surface | `--ink-soft` | `#17120f` |
+| Brick depth | `--brick` | `#321810` |
+| Warm ivory surface | `--paper` | `#f1ece3` |
+| Muted ivory surface | `--paper-dark` | `#ddd4c7` |
+| Burnt gold accent | `--gold` | `#c58b46` |
+| Highlight gold | `--gold-bright` | `#e2ad67` |
+| Dark gold copy | `--gold-deep` | `#7a4a19` |
 
-Use burnt amber as the only accent and make every use earn its place: current
-labels, primary actions, one phrase in a display headline, or a key interaction.
-Never use pure white or introduce a second bright accent.
+Use navy, brick, ivory and gold as the heritage palette. Glass treatments may
+soften navigation, utility controls and grouped cards, but body copy must always
+sit on a sufficiently opaque surface with WCAG AA contrast.
 
 ### Typography
 
@@ -71,7 +73,7 @@ Never use pure white or introduce a second bright accent.
 ### Hero
 
 - Use a full-height split screen: a tactile show-poster image on the left and a
-  calm warm-black editorial panel on the right.
+  warm ivory editorial panel with subtle amber and brick gradients on the right.
 - The poster uses an editorial grid of real Episode 1 frame grabs: one
   three-person wide plus individual Pranav, Mustapha and Pavle close-ups. Use
   the illustrated logo only in the site identity, not as a substitute for the
@@ -129,7 +131,7 @@ Never use pure white or introduce a second bright accent.
 
 - No cluttered grids of equal-priority cards.
 - No generic blue/purple streaming-service palette.
-- No glassmorphism over body copy.
+- No low-opacity glass behind long-form body copy.
 - No emoji used as interface controls.
 - No tiny icon-only controls.
 - No manually maintained “latest episode” copy.
