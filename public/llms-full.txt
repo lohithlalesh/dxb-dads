@@ -10,8 +10,8 @@ Core themes: Fatherhood. Manhood. Friendship. Real Talk.
 
 ## Official platforms
 
-- Website: https://dxb-dads.laleshlohith.chatgpt.site/
-- Episodes: https://dxb-dads.laleshlohith.chatgpt.site/episodes
+- Website: https://lohithlalesh.github.io/dxb-dads/
+- Episodes: https://lohithlalesh.github.io/dxb-dads/episodes/
 - YouTube: https://www.youtube.com/@DXBDads
 - Spotify: https://open.spotify.com/show/033XRlOY44hvb5tbVHd6e1
 - Apple Podcasts: https://podcasts.apple.com/us/podcast/dxb-dads/id6795961480
@@ -45,7 +45,7 @@ Summary: Dubai summer, children at home and temperatures through the roof. Prana
 
 Topics include surviving Dubai summer, building structure when school and nursery are closed, screen-time limits, indoor activities, boredom, family routines and keeping parents sane.
 
-- Episode page: https://dxb-dads.laleshlohith.chatgpt.site/episodes/too-hot-to-parent-surviving-dubai-summer-without-losing-your-mind
+- Episode page: https://lohithlalesh.github.io/dxb-dads/episodes/too-hot-to-parent-surviving-dubai-summer-without-losing-your-mind/
 - YouTube: https://www.youtube.com/watch?v=hZ9q5O4cvAA
 - Spotify show: https://open.spotify.com/show/033XRlOY44hvb5tbVHd6e1
 - Apple Podcasts: https://podcasts.apple.com/us/podcast/dxb-dads/id6795961480

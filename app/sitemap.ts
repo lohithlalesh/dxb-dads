@@ -1,7 +1,10 @@
 import type { MetadataRoute } from "next";
 import { getEpisodes } from "../lib/podcast";
+import { SITE_URL } from "../lib/site";
 
-const BASE_URL = "https://dxb-dads.laleshlohith.chatgpt.site";
+export const dynamic = "force-static";
+
+const BASE_URL = SITE_URL;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const episodes = await getEpisodes();

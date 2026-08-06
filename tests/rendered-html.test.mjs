@@ -59,7 +59,10 @@ test("server-renders the finished DXB Dads landing page", async () => {
   assert.match(html, /\/podcast-pavle\.jpg/);
   assert.match(html, /class="hero split-hero"/);
   assert.match(html, /A FATHERHOOD/);
-  assert.match(html, /https:\/\/dxb-dads\.example\/og\.png/);
+  assert.match(
+    html,
+    /https:\/\/dxb-dads\.laleshlohith\.chatgpt\.site\/og\.png/,
+  );
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
 

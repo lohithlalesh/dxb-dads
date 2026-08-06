@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dxb-dads.laleshlohith.chatgpt.site/sitemap.xml
-Host: dxb-dads.laleshlohith.chatgpt.site
+Sitemap: https://lohithlalesh.github.io/dxb-dads/sitemap.xml
+Host: lohithlalesh.github.io

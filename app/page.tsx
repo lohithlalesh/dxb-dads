@@ -8,16 +8,18 @@ import {
   shortEpisodeTitle,
   type Episode,
 } from "../lib/podcast";
+import { assetPath, siteUrl } from "../lib/site";
 
 export const revalidate = 900;
+export const dynamic = "force-static";
 
 const ticker =
   "FATHERHOOD  •  MANHOOD  •  FRIENDSHIP  •  FAMILY  •  DUBAI  •  REAL TALK  •  ";
 
 const HOST_IMAGES = {
-  left: "/podcast-pranav.jpg",
-  center: "/podcast-mustapha.jpg",
-  right: "/podcast-pavle.jpg",
+  left: assetPath("/podcast-pranav.jpg"),
+  center: assetPath("/podcast-mustapha.jpg"),
+  right: assetPath("/podcast-pavle.jpg"),
 } as const;
 
 function Arrow({ direction = "out" }: { direction?: "out" | "down" }) {
@@ -82,15 +84,18 @@ export default async function Home() {
     "@type": "PodcastSeries",
     name: PODCAST.name,
     description: PODCAST.description,
-    url: "https://dxb-dads.laleshlohith.chatgpt.site",
+    url: siteUrl("/"),
     webFeed: PODCAST.rss,
     image:
-      "https://dxb-dads.laleshlohith.chatgpt.site/dxb-dads-logo-clean.png",
+      siteUrl("/dxb-dads-logo-clean.png"),
     inLanguage: "en",
     genre: ["Parenting", "Kids & Family", "Society & Culture"],
     author: HOSTS.map((host) => ({
       "@type": "Person",
-      name: host.nickname ? `${host.name} (${host.nickname})` : host.name,
+      name:
+        "nickname" in host && host.nickname
+          ? `${host.name} (${host.nickname})`
+          : host.name,
     })),
     sameAs: [
       PODCAST.youtube,
@@ -110,7 +115,7 @@ export default async function Home() {
         <header className="site-header">
           <a className="wordmark" href="#home" aria-label="DXB Dads home">
             <Image
-              src="/dxb-dads-logo-clean.png"
+              src={assetPath("/dxb-dads-logo-clean.png")}
               alt="DXB Dads"
               width={1254}
               height={1254}
@@ -139,7 +144,7 @@ export default async function Home() {
             <div className="show-poster-collage">
               <div className="poster-wide-shot">
                 <Image
-                  src="/podcast-wide-02.jpg"
+                  src={assetPath("/podcast-wide-02.jpg")}
                   alt="Pranav, Mustapha and Pavle in conversation on DXB Dads"
                   fill
                   sizes="(max-width: 820px) 100vw, 50vw"
@@ -148,7 +153,7 @@ export default async function Home() {
               </div>
               <div className="poster-person-shot poster-pranav">
                 <Image
-                  src="/podcast-pranav.jpg"
+                  src={assetPath("/podcast-pranav.jpg")}
                   alt="Pranav speaking on the DXB Dads podcast"
                   fill
                   sizes="(max-width: 820px) 33vw, 17vw"
@@ -157,7 +162,7 @@ export default async function Home() {
               </div>
               <div className="poster-person-shot poster-mustapha">
                 <Image
-                  src="/podcast-mustapha.jpg"
+                  src={assetPath("/podcast-mustapha.jpg")}
                   alt="Mustapha speaking on the DXB Dads podcast"
                   fill
                   sizes="(max-width: 820px) 33vw, 17vw"
@@ -166,7 +171,7 @@ export default async function Home() {
               </div>
               <div className="poster-person-shot poster-pavle">
                 <Image
-                  src="/podcast-pavle.jpg"
+                  src={assetPath("/podcast-pavle.jpg")}
                   alt="Pavle speaking on the DXB Dads podcast"
                   fill
                   sizes="(max-width: 820px) 33vw, 17vw"
@@ -296,7 +301,7 @@ export default async function Home() {
             aria-label={`${latest.youtube ? "Watch" : "Listen to"} ${latest.title}`}
           >
             <Image
-              src={latest.youtube?.thumbnail ?? "/podcast-wide-01.jpg"}
+              src={latest.youtube?.thumbnail ?? assetPath("/podcast-wide-01.jpg")}
               alt=""
               fill
               sizes="(max-width: 960px) 100vw, 58vw"
@@ -343,7 +348,7 @@ export default async function Home() {
                 <article className="recent-card" key={episode.slug}>
                   <Link className="recent-image" href={`/episodes/${episode.slug}`}>
                     <Image
-                      src={episode.youtube?.thumbnail ?? "/podcast-conversation.jpg"}
+                      src={episode.youtube?.thumbnail ?? assetPath("/podcast-conversation.jpg")}
                       alt=""
                       fill
                       sizes="(max-width: 720px) 100vw, 33vw"
@@ -372,7 +377,7 @@ export default async function Home() {
         <div className="studio-photo-wrap">
           <Image
             className="studio-photo"
-            src="/podcast-wide-01.jpg"
+            src={assetPath("/podcast-wide-01.jpg")}
             alt="Pranav, Mustapha and Pavle recording in the DXB Dads studio"
             fill
             sizes="(max-width: 960px) 100vw, 58vw"
@@ -435,7 +440,9 @@ export default async function Home() {
                 <p>{host.label}</p>
                 <h3>
                   {host.name}
-                  {host.nickname && <small>“{host.nickname}”</small>}
+                  {"nickname" in host && host.nickname && (
+                    <small>“{host.nickname}”</small>
+                  )}
                 </h3>
               </div>
             </article>
@@ -472,7 +479,7 @@ export default async function Home() {
       <footer>
         <a className="footer-brand" href="#home" aria-label="DXB Dads home">
           <Image
-            src="/dxb-dads-logo-clean.png"
+            src={assetPath("/dxb-dads-logo-clean.png")}
             alt="DXB Dads"
             width={1254}
             height={1254}

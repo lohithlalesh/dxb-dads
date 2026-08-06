@@ -7,8 +7,10 @@ import {
   PODCAST,
   shortEpisodeTitle,
 } from "../../lib/podcast";
+import { assetPath } from "../../lib/site";
 
 export const revalidate = 900;
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Episodes",
@@ -23,7 +25,7 @@ export default async function EpisodesPage() {
     <main className="inner-page">
       <header className="site-header inner-header">
         <Link className="wordmark" href="/" aria-label="DXB Dads home">
-          <Image src="/dxb-dads-logo-clean.png" alt="DXB Dads" width={1254} height={1254} sizes="78px" />
+          <Image src={assetPath("/dxb-dads-logo-clean.png")} alt="DXB Dads" width={1254} height={1254} sizes="78px" />
         </Link>
         <nav aria-label="Primary navigation">
           <Link href="/">Home</Link>
@@ -49,7 +51,7 @@ export default async function EpisodesPage() {
           <article className="archive-card" key={episode.slug}>
             <Link className="archive-media" href={`/episodes/${episode.slug}`}>
               <Image
-                src={episode.youtube?.thumbnail ?? "/podcast-conversation.jpg"}
+                src={episode.youtube?.thumbnail ?? assetPath("/podcast-conversation.jpg")}
                 alt=""
                 fill
                 sizes="(max-width: 860px) 100vw, 50vw"

@@ -4,8 +4,8 @@
 
 ## Key pages
 
-- [Home](https://dxb-dads.laleshlohith.chatgpt.site/): Show overview, latest episode, hosts and listening links.
-- [Episodes](https://dxb-dads.laleshlohith.chatgpt.site/episodes): Current DXB Dads episode archive.
+- [Home](https://lohithlalesh.github.io/dxb-dads/): Show overview, latest episode, hosts and listening links.
+- [Episodes](https://lohithlalesh.github.io/dxb-dads/episodes/): Current DXB Dads episode archive.
 - [YouTube](https://www.youtube.com/@DXBDads): Full video episodes and clips.
 - [Spotify](https://open.spotify.com/show/033XRlOY44hvb5tbVHd6e1): Follow and listen on Spotify.
 - [Apple Podcasts](https://podcasts.apple.com/us/podcast/dxb-dads/id6795961480): Follow and listen on Apple Podcasts.

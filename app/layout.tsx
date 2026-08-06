@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import { PODCAST } from "../lib/podcast";
+import { SITE_URL, siteUrl } from "../lib/site";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -9,19 +9,11 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ??
-    requestHeaders.get("host") ??
-    "dxb-dads.laleshlohith.chatgpt.site";
-  const protocol =
-    requestHeaders.get("x-forwarded-proto") ??
-    (host.startsWith("localhost") ? "http" : "https");
-  const siteUrl = new URL(`${protocol}://${host}`);
-  const socialImage = new URL("/og.png", siteUrl).toString();
+  const metadataBase = new URL(`${SITE_URL}/`);
+  const socialImage = siteUrl("/og.png");
 
   return {
-    metadataBase: siteUrl,
+    metadataBase,
     title: {
       default: "DXB Dads Podcast — Fatherhood, Family & Real Talk in Dubai",
       template: "%s | DXB Dads Podcast",
@@ -51,12 +43,12 @@ export async function generateMetadata(): Promise<Metadata> {
       "UAE parents",
     ],
     alternates: {
-      canonical: siteUrl,
+      canonical: siteUrl("/"),
       types: { "application/rss+xml": PODCAST.rss },
     },
     icons: {
-      icon: "/dxb-dads-logo-clean.png",
-      apple: "/dxb-dads-logo-clean.png",
+      icon: siteUrl("/dxb-dads-logo-clean.png"),
+      apple: siteUrl("/dxb-dads-logo-clean.png"),
     },
     manifest: "/manifest.webmanifest",
     robots: {
@@ -76,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       siteName: "DXB Dads",
       locale: "en_AE",
-      url: siteUrl,
+      url: siteUrl("/"),
       images: [
         {
           url: socialImage,

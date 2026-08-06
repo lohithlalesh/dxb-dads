@@ -9,12 +9,20 @@ import {
   PODCAST,
   shortEpisodeTitle,
 } from "../../../lib/podcast";
+import { assetPath, siteUrl } from "../../../lib/site";
 
 export const revalidate = 900;
+export const dynamic = "force-static";
+export const dynamicParams = false;
 
 type EpisodePageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateStaticParams() {
+  const episodes = await getEpisodes();
+  return episodes.map((episode) => ({slug: episode.slug}));
+}
 
 export async function generateMetadata({ params }: EpisodePageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -61,7 +69,7 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
     partOfSeries: {
       "@type": "PodcastSeries",
       name: PODCAST.name,
-      url: "https://dxb-dads.laleshlohith.chatgpt.site",
+      url: siteUrl("/"),
     },
     associatedMedia: episode.audioUrl
       ? { "@type": "AudioObject", contentUrl: episode.audioUrl }
@@ -83,7 +91,7 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
     <main className="inner-page episode-page">
       <header className="site-header inner-header">
         <Link className="wordmark" href="/" aria-label="DXB Dads home">
-          <Image src="/dxb-dads-logo-clean.png" alt="DXB Dads" width={1254} height={1254} sizes="78px" />
+          <Image src={assetPath("/dxb-dads-logo-clean.png")} alt="DXB Dads" width={1254} height={1254} sizes="78px" />
         </Link>
         <nav aria-label="Primary navigation">
           <Link href="/">Home</Link>
@@ -116,7 +124,7 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
             />
           ) : (
             <div className="audio-poster">
-              <Image src="/podcast-wide-01.jpg" alt="The DXB Dads recording in their Dubai studio" fill sizes="100vw" />
+              <Image src={assetPath("/podcast-wide-01.jpg")} alt="The DXB Dads recording in their Dubai studio" fill sizes="100vw" />
             </div>
           )}
         </div>
@@ -148,8 +156,8 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
             )}
             <div className="share-row">
               <span>Share this episode</span>
-              <a href={`https://wa.me/?text=${encodeURIComponent(`${episode.title} https://dxb-dads.laleshlohith.chatgpt.site/episodes/${episode.slug}`)}`} target="_blank" rel="noreferrer">WhatsApp ↗</a>
-              <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://dxb-dads.laleshlohith.chatgpt.site/episodes/${episode.slug}`)}`} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+              <a href={`https://wa.me/?text=${encodeURIComponent(`${episode.title} ${siteUrl(`/episodes/${episode.slug}`)}`)}`} target="_blank" rel="noreferrer">WhatsApp ↗</a>
+              <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteUrl(`/episodes/${episode.slug}`))}`} target="_blank" rel="noreferrer">LinkedIn ↗</a>
             </div>
           </div>
         </div>

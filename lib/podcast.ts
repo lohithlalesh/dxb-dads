@@ -188,7 +188,7 @@ async function fetchYouTubeVideos(): Promise<YouTubeVideo[]> {
       `https://www.youtube.com/feeds/videos.xml?channel_id=${PODCAST.youtubeChannelId}`,
       {
       headers: { "user-agent": "Mozilla/5.0 DXBDadsWebsite/1.0" },
-      next: { revalidate: 900 },
+      cache: "force-cache",
       },
     );
     if (!response.ok) return KNOWN_YOUTUBE;
@@ -268,7 +268,7 @@ function parseFeed(xml: string, videos: YouTubeVideo[]): Episode[] {
 export async function getEpisodes() {
   try {
     const [response, videos] = await Promise.all([
-      fetch(PODCAST.rss, { next: { revalidate: 900 } }),
+      fetch(PODCAST.rss, { cache: "force-cache" }),
       fetchYouTubeVideos(),
     ]);
     if (!response.ok) return FALLBACK_EPISODES;
