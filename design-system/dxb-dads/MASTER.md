@@ -4,7 +4,7 @@ This is the source of truth for future site changes. Page-specific files in
 `pages/` may override it when a route needs a deliberate exception.
 
 **Product:** Podcast discovery and publishing hub  
-**Direction:** Editorial cinema — warm, chromatic, tactile, spacious
+**Direction:** Editorial cinema — warm paper, bold photography, tactile cutouts
 **Design dials:** Variance 6/10 · Motion 4/10 · Density 3/10
 
 ## Experience principles
@@ -35,9 +35,10 @@ This is the source of truth for future site changes. Page-specific files in
 | Highlight gold | `--gold-bright` | `#e2ad67` |
 | Dark gold copy | `--gold-deep` | `#7a4a19` |
 
-Use navy, brick, ivory and gold as the heritage palette. Glass treatments may
-soften navigation, utility controls and grouped cards, but body copy must always
-sit on a sufficiently opaque surface with WCAG AA contrast.
+Use navy, brick, ivory and gold as the heritage palette. Primary cards and
+content panels use warm-white paper surfaces with subtly irregular cut edges,
+never rounded glass containers. Body copy always sits on an opaque surface with
+WCAG AA contrast.
 
 ### Typography
 
@@ -66,6 +67,9 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
 
 - Logo left, four or fewer navigation choices, one high-priority latest-episode
   action on the right.
+- Keep the header edge-to-edge and visually light. Navigation links may sit on
+  a small ivory paper strip and the CTA on a gold ticket, but never wrap the
+  entire header in a floating rounded container.
 - Mobile may collapse the anchor links, but the latest-episode action must stay
   visible.
 - Every link has a visible keyboard focus state and at least a 44px touch area.
@@ -86,6 +90,8 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
 ### Episode cards
 
 - Reserve media space with an aspect ratio to prevent layout shift.
+- Frame imagery in warm-white paper with subtly torn cut edges, square corners
+  and a soft physical drop shadow.
 - The newest full episode gets the only large feature treatment.
 - Older releases flow into a three-column desktop grid and a single-column
   mobile list automatically.
@@ -131,7 +137,7 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
 
 - No cluttered grids of equal-priority cards.
 - No generic blue/purple streaming-service palette.
-- No low-opacity glass behind long-form body copy.
+- No glassmorphism or rounded floating containers.
 - No emoji used as interface controls.
 - No tiny icon-only controls.
 - No manually maintained “latest episode” copy.
