@@ -3,18 +3,21 @@
 
 :root {
   --ink: #0d0b09;
-  --ink-soft: #17120f;
-  --brick: #321810;
-  --brick-light: #6b3423;
-  --navy: #071d2a;
-  --gold: #c58b46;
-  --gold-bright: #e2ad67;
-  --gold-deep: #7a4a19;
-  --paper: #f1ece3;
-  --paper-dark: #ddd4c7;
-  --white: #fffdf8;
-  --line-light: rgba(255, 253, 248, 0.18);
-  --line-dark: rgba(7, 29, 42, 0.18);
+  --ink-soft: #151210;
+  --ink-raised: #1c1815;
+  --brick: #1c1815;
+  --brick-light: #c98642;
+  --navy: #f5f0e8;
+  --gold: #c98642;
+  --gold-bright: #c98642;
+  --gold-deep: #c98642;
+  --paper: #f5f0e8;
+  --paper-dark: #151210;
+  --white: #f5f0e8;
+  --muted: rgba(245, 240, 232, 0.62);
+  --muted-soft: rgba(245, 240, 232, 0.55);
+  --line-light: rgba(245, 240, 232, 0.08);
+  --line-dark: rgba(245, 240, 232, 0.08);
   --display: "Anton", Impact, "Arial Narrow", sans-serif;
   --sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
   --max: 1420px;
@@ -32,8 +35,8 @@ html {
 body {
   margin: 0;
   overflow-x: hidden;
-  background: var(--paper);
-  color: var(--navy);
+  background: var(--ink);
+  color: var(--paper);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
 }
@@ -44,8 +47,8 @@ body::before {
   inset: 0;
   content: "";
   pointer-events: none;
-  opacity: 0.045;
-  mix-blend-mode: multiply;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
   background-image:
     repeating-radial-gradient(circle at 13% 17%, transparent 0 1px, rgba(0, 0, 0, 0.72) 1px 1.5px),
     repeating-linear-gradient(87deg, transparent 0 5px, rgba(255, 255, 255, 0.12) 5px 6px);
@@ -1702,6 +1705,439 @@ footer {
   }
 }
 
+/* Warm editorial refinement — one cinematic system across every route */
+
+body,
+.inner-page,
+.episode-page {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+h1,
+h2,
+h3,
+.poster-wordmark strong,
+.platform-grid strong {
+  letter-spacing: -0.03em;
+}
+
+.hero h1,
+.archive-hero h1,
+.episode-hero h1,
+.not-found h1,
+.hero-editorial h1 {
+  font-size: clamp(4.5rem, 7vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.section-heading h2,
+.intro h2,
+.studio-copy h2,
+.listen-copy h2,
+.follow h2,
+.faq h2,
+.archive-cta h2,
+.episode-next h2 {
+  font-size: clamp(4rem, 7vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.section-label,
+.episode-meta,
+.hero-kicker,
+.editorial-now-playing small,
+.host-info p,
+.recent-card p,
+.share-row span {
+  color: var(--gold);
+}
+
+.section-heading h2 span,
+.intro h2 em,
+.studio-copy h2 span,
+.listen-copy h2 span,
+.archive-cta h2 span,
+.episode-next h2 span,
+.hero h1 span,
+.archive-hero h1 span,
+.episode-hero h1 span,
+.not-found h1 span {
+  color: var(--gold);
+}
+
+.split-hero {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.split-hero .site-header {
+  color: var(--paper);
+}
+
+.split-hero .site-header nav a,
+.split-hero .nav-cta {
+  color: rgba(245, 240, 232, 0.82);
+}
+
+.split-hero .site-header nav a::after {
+  background: var(--gold);
+}
+
+.split-hero .nav-cta {
+  border-color: var(--line-light);
+}
+
+.split-hero .nav-cta:hover {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.show-poster-frame,
+.poster-wordmark,
+.hero-now-playing,
+.photo-badge,
+.on-air {
+  border-color: var(--line-light);
+}
+
+.hero-editorial {
+  background:
+    radial-gradient(circle at 84% 14%, rgba(201, 134, 66, 0.08), transparent 31%),
+    var(--ink-soft);
+  color: var(--paper);
+}
+
+.hero-editorial h1,
+.hero-editorial h1 strong,
+.hero-editorial .hero-deck,
+.hero-listen,
+.editorial-now-playing strong {
+  color: var(--paper);
+}
+
+.hero-editorial h1 span,
+.hero-editorial .hero-kicker,
+.editorial-now-playing small {
+  color: var(--gold);
+}
+
+.hero-editorial .hero-kicker span,
+.hero-listen > span {
+  color: var(--muted-soft);
+}
+
+.hero-editorial .hero-deck {
+  color: var(--muted);
+}
+
+.hero-editorial .hero-primary {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.hero-editorial .hero-primary:hover {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.hero-editorial .hero-secondary,
+.hero-listen a,
+.editorial-now-playing {
+  border-color: var(--line-light);
+  color: var(--paper);
+}
+
+.hero-editorial .hero-secondary:hover,
+.hero-listen a:hover,
+.editorial-now-playing:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.ticker {
+  padding: 15px 0;
+  border-top: 1px solid var(--line-light);
+  border-bottom: 1px solid var(--line-light);
+  background: var(--ink-raised);
+  color: var(--gold);
+}
+
+.intro,
+.latest,
+.hosts,
+.faq,
+.archive-grid,
+.episode-body {
+  padding-top: clamp(112px, 11vw, 180px);
+  padding-bottom: clamp(112px, 11vw, 180px);
+}
+
+.intro {
+  background:
+    linear-gradient(90deg, rgba(201, 134, 66, 0.045), transparent 46%),
+    var(--ink);
+}
+
+.intro-copy p,
+.intro-copy .intro-lede,
+.hosts-heading > p,
+.recent-heading > p:last-child,
+.episode-description,
+.archive-copy > p:not(.episode-meta),
+.show-notes > p:not(.section-label),
+.faq details p {
+  color: var(--muted);
+}
+
+.intro-copy .intro-lede {
+  color: var(--paper);
+}
+
+.latest,
+.hosts,
+.faq,
+.episode-body {
+  background: var(--ink-soft);
+}
+
+.featured-episode,
+.recent-card,
+.host-card,
+.archive-card {
+  border: 1px solid var(--line-light);
+  background: var(--ink-raised);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
+}
+
+.recent-card:hover,
+.host-card:hover {
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.28);
+}
+
+.episode-content h3,
+.recent-card h3,
+.host-info h3,
+.archive-copy h2,
+.show-notes h2 {
+  color: var(--paper);
+}
+
+.topic-chips span,
+.pillars span,
+.listen-panel a,
+.faq-list,
+.faq details,
+.show-notes ul,
+.show-notes li,
+.share-row,
+.recent-heading,
+.footer-bottom,
+.platform-links.compact {
+  border-color: var(--line-light);
+}
+
+.text-link,
+.card-link,
+.archive-actions a {
+  border-color: var(--line-light);
+  color: var(--paper);
+}
+
+.text-link:hover,
+.card-link:hover,
+.archive-actions a:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.button.primary.dark,
+.button.primary {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.button.primary.dark:hover,
+.button.primary:hover {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.button.ghost,
+.button.secondary {
+  border-color: var(--line-light);
+  color: var(--paper);
+}
+
+.button.ghost:hover,
+.button.secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.up-next,
+.archive-cta,
+.episode-next,
+.follow,
+.listen {
+  background: var(--ink-raised);
+  color: var(--paper);
+}
+
+.up-next p:not(.section-label),
+.listen-copy > p:last-child,
+.follow > div:first-child > p:last-child {
+  color: var(--muted);
+}
+
+.studio-section,
+.studio-story {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.studio-story .studio-copy,
+.studio-copy {
+  padding-top: clamp(112px, 11vw, 180px);
+  padding-bottom: clamp(112px, 11vw, 180px);
+}
+
+.hosts .host-card {
+  border-color: var(--line-light);
+}
+
+.host-info small {
+  color: var(--muted-soft);
+}
+
+.listen {
+  padding-top: clamp(112px, 11vw, 180px);
+  padding-bottom: clamp(112px, 11vw, 180px);
+}
+
+.listen-copy .section-label,
+.follow .section-label,
+.platform-grid span,
+.instagram-card span {
+  color: var(--muted-soft);
+}
+
+.platform-grid {
+  border-color: var(--line-light);
+}
+
+.platform-grid a {
+  border-color: var(--line-light);
+}
+
+.platform-grid a:hover {
+  background: rgba(245, 240, 232, 0.035);
+}
+
+.platform-grid a > span:last-child,
+.platform-grid strong {
+  color: var(--paper);
+}
+
+.instagram-card {
+  border: 1px solid var(--line-light);
+  background: var(--ink);
+}
+
+.inner-page,
+.archive-grid {
+  background: var(--ink);
+}
+
+.inner-page > .inner-header,
+.archive-hero,
+.episode-page,
+.episode-hero {
+  background-color: var(--ink);
+}
+
+.archive-hero p:last-child,
+.episode-hero-meta,
+.not-found p:not(.section-label) {
+  color: var(--muted);
+}
+
+.episode-player {
+  border: 1px solid var(--line-light);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.42);
+}
+
+.show-poster-collage img,
+.episode-media img,
+.recent-image img,
+.archive-media img,
+.studio-photo,
+.studio-image img,
+.host-portrait img,
+.audio-poster img {
+  filter: saturate(0.78) contrast(1.06) sepia(0.08) brightness(0.9);
+}
+
+.show-poster-scrim,
+.episode-media::after,
+.recent-image::after,
+.archive-media::after,
+.host-portrait::after {
+  background-color: rgba(38, 22, 13, 0.08);
+}
+
+footer {
+  border-top: 1px solid var(--line-light);
+  background: var(--ink);
+}
+
+.footer-links a,
+.footer-bottom,
+.simple-footer {
+  color: var(--muted-soft);
+}
+
+@media (max-width: 820px) {
+  .hero-editorial h1,
+  .hero h1,
+  .archive-hero h1,
+  .episode-hero h1,
+  .not-found h1 {
+    font-size: clamp(3.75rem, 13vw, 6rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .intro,
+  .latest,
+  .hosts,
+  .listen,
+  .faq,
+  .archive-grid,
+  .episode-body {
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+
+  .section-heading h2,
+  .intro h2,
+  .studio-copy h2,
+  .listen-copy h2,
+  .follow h2,
+  .faq h2,
+  .archive-cta h2,
+  .episode-next h2 {
+    font-size: clamp(3.25rem, 15vw, 5rem);
+  }
+}
+
 /* Split-screen show poster hero */
 .split-hero {
   min-height: 100svh;
@@ -3064,5 +3500,180 @@ footer {
   .studio-story .studio-copy h2,
   .listen-copy h2 {
     font-size: clamp(3rem, 16vw, 4.8rem);
+  }
+}
+
+/* Final homepage cascade: keep later component definitions inside the dark system. */
+
+.split-hero {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.split-hero .site-header,
+.split-hero .site-header nav a,
+.split-hero .nav-cta {
+  color: var(--paper);
+}
+
+.split-hero .nav-cta {
+  border-color: var(--line-light);
+}
+
+.hero-editorial {
+  background:
+    radial-gradient(circle at 84% 14%, rgba(201, 134, 66, 0.08), transparent 31%),
+    var(--ink-soft);
+  color: var(--paper);
+}
+
+.hero-editorial h1,
+.hero-editorial h1 strong,
+.hero-editorial .hero-deck,
+.hero-listen,
+.editorial-now-playing strong {
+  color: var(--paper);
+}
+
+.hero-editorial h1 {
+  font-size: clamp(4.5rem, 7vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.hero-editorial h1 span,
+.hero-editorial .hero-kicker,
+.editorial-now-playing small {
+  color: var(--gold);
+}
+
+.hero-editorial .hero-kicker span,
+.hero-listen > span {
+  color: var(--muted-soft);
+}
+
+.hero-editorial .hero-deck {
+  color: var(--muted);
+}
+
+.hero-editorial .hero-primary {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.hero-editorial .hero-secondary,
+.hero-listen a,
+.editorial-now-playing {
+  border-color: var(--line-light);
+  color: var(--paper);
+}
+
+.intro {
+  padding-top: clamp(112px, 11vw, 180px);
+  padding-bottom: clamp(112px, 11vw, 180px);
+  background:
+    linear-gradient(90deg, rgba(201, 134, 66, 0.045), transparent 46%),
+    var(--ink);
+}
+
+.intro-copy p {
+  color: var(--muted);
+}
+
+.intro-copy .intro-lede {
+  color: var(--paper);
+}
+
+.recent-heading,
+.recent-card,
+.hosts .host-card,
+.platform-grid,
+.platform-grid a {
+  border-color: var(--line-light);
+}
+
+.recent-heading > p:last-child {
+  color: var(--muted);
+}
+
+.recent-card {
+  border: 1px solid var(--line-light);
+  background: var(--ink-raised);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
+}
+
+.recent-card p {
+  color: var(--gold);
+}
+
+.card-link {
+  border-color: var(--line-light);
+  color: var(--paper);
+}
+
+.studio-story .studio-copy {
+  padding-top: clamp(112px, 11vw, 180px);
+  padding-bottom: clamp(112px, 11vw, 180px);
+}
+
+.listen {
+  padding-top: clamp(112px, 11vw, 180px);
+  padding-bottom: clamp(112px, 11vw, 180px);
+  background: var(--ink-raised);
+  color: var(--paper);
+}
+
+.listen-copy h2 span {
+  color: var(--gold);
+}
+
+.listen-copy .section-label,
+.platform-grid span {
+  color: var(--muted-soft);
+}
+
+.listen-copy > p:last-child {
+  color: var(--muted);
+}
+
+.platform-grid a:hover {
+  background: rgba(245, 240, 232, 0.035);
+}
+
+.platform-grid strong,
+.platform-grid a > span:last-child {
+  color: var(--paper);
+}
+
+.show-poster-collage img,
+.episode-media img,
+.recent-image img,
+.archive-media img,
+.studio-photo,
+.studio-image img,
+.host-portrait img,
+.audio-poster img {
+  filter: saturate(0.78) contrast(1.06) sepia(0.08) brightness(0.9);
+}
+
+@media (max-width: 820px) {
+  .hero-editorial h1 {
+    font-size: clamp(3.75rem, 13vw, 6rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .intro,
+  .latest,
+  .hosts,
+  .listen {
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+
+  .studio-story .studio-copy {
+    padding-top: 88px;
+    padding-bottom: 88px;
   }
 }

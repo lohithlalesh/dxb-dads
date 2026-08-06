@@ -12,8 +12,8 @@ This is the source of truth for future site changes. Page-specific files in
 1. Make the newest full episode the clearest action on every visit.
 2. Use the RSS feed as the content source; never hard-code a released episode.
 3. Keep the homepage editorial and focused, not like a generic marketing site.
-4. Preserve the established DXB Dads studio palette, Anton display type and
-   real host photography.
+4. Preserve Anton as the high-impact condensed display face, Manrope as the
+   neutral body face, and real host photography throughout.
 5. Make YouTube, Spotify and Apple Podcast choices obvious without repeating
    them in every section.
 6. Design mobile-first: 44px minimum targets, 8px target spacing, no horizontal
@@ -26,23 +26,21 @@ This is the source of truth for future site changes. Page-specific files in
 | Role | Token | Value |
 |---|---|---|
 | Cinematic background | `--ink` | `#0d0b09` |
-| Warm dark surface | `--ink-soft` | `#17120f` |
-| Brand brick | `--brick` | `#321810` |
-| Body text / navy | `--navy` | `#071d2a` |
-| Brand gold | `--gold` | `#c58b46` |
-| Gold on dark | `--gold-bright` | `#e2ad67` |
-| Accessible gold text on light | `--gold-deep` | `#7a4a19` |
-| Paper background | `--paper` | `#f1ece3` |
-| Secondary paper | `--paper-dark` | `#ddd4c7` |
-| High contrast light | `--white` | `#fffdf8` |
+| Warm dark surface | `--ink-soft` | `#151210` |
+| Raised dark surface | `--ink-raised` | `#1c1815` |
+| Warm off-white text | `--paper`, `--white` | `#f5f0e8` |
+| Secondary text | `--muted` | `rgba(245,240,232,.62)` |
+| Burnt amber accent | `--gold` | `#c98642` |
+| Hairline | `--line-light`, `--line-dark` | `rgba(245,240,232,.08)` |
 
-Use gold as a signal, not a fill everywhere. Small gold text on paper must use
-`--gold-deep`; `--gold` and `--gold-bright` are for dark surfaces, large type,
-borders and decorative fields.
+Use burnt amber as the only accent and make every use earn its place: current
+labels, primary actions, one phrase in a display headline, or a key interaction.
+Never use pure white or introduce a second bright accent.
 
 ### Typography
 
-- Display: Anton, uppercase, tight line-height (0.83–0.96).
+- Display: Anton, uppercase, 4–7rem on desktop, `-0.03em` tracking and
+  `0.92–0.95` line-height.
 - Body/UI: Manrope, minimum 16px for paragraph copy and 1.5+ line-height.
 - Labels: Manrope 700/800, uppercase, letter-spaced; never below 12px when the
   text carries meaning.
@@ -58,7 +56,7 @@ borders and decorative fields.
 | LG | 32px | Component groups |
 | XL | 48px | Section groups |
 | 2XL | 64px | Major separation |
-| 3XL | 96px | Desktop section rhythm |
+| 3XL | 112–180px | Desktop section rhythm |
 
 ## Components
 
@@ -73,7 +71,7 @@ borders and decorative fields.
 ### Hero
 
 - Use a full-height split screen: a tactile show-poster image on the left and a
-  calm paper editorial panel on the right.
+  calm warm-black editorial panel on the right.
 - The poster uses an editorial grid of real Episode 1 frame grabs: one
   three-person wide plus individual Pranav, Mustapha and Pavle close-ups. Use
   the illustrated logo only in the site identity, not as a substitute for the
@@ -106,6 +104,14 @@ borders and decorative fields.
 - Avoid scroll-jacking, parallax, carousels and decorative animation that delays
   episode discovery.
 - Respect `prefers-reduced-motion` globally.
+
+## Texture and photography
+
+- Keep the fixed page grain at 2–4% opacity with `mix-blend-mode: overlay`.
+- Grade all podcast photography consistently: slightly desaturated, gently
+  warmed in the shadows, and never blue or clinically neutral.
+- Use 1px warm-white hairlines at 8% opacity. If a border is immediately
+  noticeable before its content, it is too strong.
 
 ## Accessibility and ergonomic checklist
 
