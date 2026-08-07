@@ -66,6 +66,8 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
 
 - Logo left, four or fewer navigation choices, one high-priority latest-episode
   action on the right.
+- Keep the navigation visually clean and unboxed. Do not apply glass-panel,
+  paper-cutout, floating-card, or rounded-container treatments to the navbar.
 - Mobile may collapse the anchor links, but the latest-episode action must stay
   visible.
 - Every link has a visible keyboard focus state and at least a 44px touch area.
