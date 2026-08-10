@@ -163,8 +163,8 @@ export default async function Home() {
             <figure className="host-cutout cutout-pranav">
               <div className="host-cutout-photo">
                 <Image
-                  src={assetPath("/host-cutout-smile-pranav.png")}
-                  alt="Pranav smiling on the DXB Dads podcast"
+                  src={assetPath("/host-cutout-pranav.png")}
+                  alt="Pranav speaking on the DXB Dads podcast"
                   fill
                   sizes="(max-width: 820px) 54vw, 31vw"
                   priority
@@ -176,8 +176,8 @@ export default async function Home() {
             <figure className="host-cutout cutout-mustapha">
               <div className="host-cutout-photo">
                 <Image
-                  src={assetPath("/host-cutout-smile-mustapha.png")}
-                  alt="Mustapha smiling on the DXB Dads podcast"
+                  src={assetPath("/host-cutout-mustapha.png")}
+                  alt="Mustapha speaking on the DXB Dads podcast"
                   fill
                   sizes="(max-width: 820px) 58vw, 34vw"
                   priority
@@ -189,8 +189,8 @@ export default async function Home() {
             <figure className="host-cutout cutout-pavle">
               <div className="host-cutout-photo">
                 <Image
-                  src={assetPath("/host-cutout-smile-pavle.png")}
-                  alt="Pavle Rastovic smiling on the DXB Dads podcast"
+                  src={assetPath("/host-cutout-pavle.png")}
+                  alt="Pavle Rastovic speaking on the DXB Dads podcast"
                   fill
                   sizes="(max-width: 820px) 54vw, 31vw"
                   priority
