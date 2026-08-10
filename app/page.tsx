@@ -140,57 +140,61 @@ export default async function Home() {
         </header>
 
         <div className="split-hero-grid" id="content">
-          <div className="show-poster">
-            <div className="show-poster-collage">
-              <div className="poster-wide-shot">
-                <Image
-                  src={assetPath("/podcast-wide-02.jpg")}
-                  alt="Pranav, Mustapha and Pavle in conversation on DXB Dads"
-                  fill
-                  sizes="(max-width: 820px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-              <div className="poster-person-shot poster-pranav">
+          <div className="show-poster hero-art" aria-label="Pranav, Mustapha and Pavle on DXB Dads">
+            <div className="hero-art-grid" aria-hidden="true" />
+            <div className="hero-art-orbit orbit-one" aria-hidden="true" />
+            <div className="hero-art-orbit orbit-two" aria-hidden="true" />
+            <div className="hero-art-spark spark-one" aria-hidden="true" />
+            <div className="hero-art-spark spark-two" aria-hidden="true" />
+            <div className="hero-art-spark spark-three" aria-hidden="true" />
+
+            <figure className="host-cutout cutout-pranav">
+              <div className="host-cutout-photo">
                 <Image
                   src={assetPath("/podcast-pranav.jpg")}
                   alt="Pranav speaking on the DXB Dads podcast"
                   fill
-                  sizes="(max-width: 820px) 33vw, 17vw"
+                  sizes="(max-width: 820px) 34vw, 19vw"
                   priority
                 />
               </div>
-              <div className="poster-person-shot poster-mustapha">
+              <figcaption><span>01</span> Pranav</figcaption>
+            </figure>
+
+            <figure className="host-cutout cutout-mustapha">
+              <div className="host-cutout-photo">
                 <Image
                   src={assetPath("/podcast-mustapha.jpg")}
                   alt="Mustapha speaking on the DXB Dads podcast"
                   fill
-                  sizes="(max-width: 820px) 33vw, 17vw"
+                  sizes="(max-width: 820px) 38vw, 22vw"
                   priority
                 />
               </div>
-              <div className="poster-person-shot poster-pavle">
+              <figcaption><span>02</span> Mustapha</figcaption>
+            </figure>
+
+            <figure className="host-cutout cutout-pavle">
+              <div className="host-cutout-photo">
                 <Image
                   src={assetPath("/podcast-pavle.jpg")}
-                  alt="Pavle speaking on the DXB Dads podcast"
+                  alt="Pavle Rastovic speaking on the DXB Dads podcast"
                   fill
-                  sizes="(max-width: 820px) 33vw, 17vw"
+                  sizes="(max-width: 820px) 34vw, 19vw"
                   priority
                 />
               </div>
+              <figcaption><span>03</span> Pavle</figcaption>
+            </figure>
+
+            <div className="hero-waveform" aria-hidden="true">
+              {Array.from({ length: 13 }, (_, index) => (
+                <i key={index} style={{ animationDelay: `${index * 70}ms` }} />
+              ))}
             </div>
-            <div className="show-poster-scrim" aria-hidden="true" />
-            <div className="show-poster-frame" aria-hidden="true" />
-            <div className="poster-wordmark" aria-hidden="true">
-              <strong>DXB.DADS</strong>
-              <span>Real dads · Real life · Real talk</span>
-            </div>
-            <p className="poster-coordinate" aria-hidden="true">
-              25° 12′ N · 55° 16′ E
-            </p>
-            <div className="poster-stamp" aria-hidden="true">
-              <span>Original podcast</span>
-              <strong>DXB / 2026</strong>
+            <div className="hero-art-copy" aria-hidden="true">
+              <span>DXB / UAE</span>
+              <strong>REAL DADS.<br />REAL TALK.</strong>
             </div>
           </div>
 

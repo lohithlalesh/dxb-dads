@@ -4,7 +4,7 @@ This is the source of truth for future site changes. Page-specific files in
 `pages/` may override it when a route needs a deliberate exception.
 
 **Product:** Podcast discovery and publishing hub  
-**Direction:** Editorial cinema — warm, chromatic, tactile, spacious
+**Direction:** Editorial cinema — compact, chromatic, image-led, tactile
 **Design dials:** Variance 6/10 · Motion 4/10 · Density 3/10
 
 ## Experience principles
@@ -68,18 +68,20 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
   action on the right.
 - Keep the navigation visually clean and unboxed. Do not apply glass-panel,
   paper-cutout, floating-card, or rounded-container treatments to the navbar.
+- On the homepage hero, navigation stays transparent over the cinematic
+  gradient with one quiet hairline and a restrained outlined latest-episode CTA.
 - Mobile may collapse the anchor links, but the latest-episode action must stay
   visible.
 - Every link has a visible keyboard focus state and at least a 44px touch area.
 
 ### Hero
 
-- Use a full-height split screen: a tactile show-poster image on the left and a
-  warm ivory editorial panel with subtle amber and brick gradients on the right.
-- The poster uses an editorial grid of real Episode 1 frame grabs: one
-  three-person wide plus individual Pranav, Mustapha and Pavle close-ups. Use
-  the illustrated logo only in the site identity, not as a substitute for the
-  hosts throughout the page.
+- Keep the full homepage hero within the first viewport. Copy sits on the left;
+  a compact abstract host collage sits on the right on desktop and above the
+  copy on mobile.
+- Use real close-ups of Pranav, Mustapha and Pavle as layered irregular
+  cutouts. Gold edges, an editorial grid, orbit lines, sparks and a small audio
+  waveform provide movement without overwhelming the photography.
 - Lead with the genre proposition, then one latest-episode action and one
   archive action. Platform links remain visible but secondary.
 - The current episode label is data-driven and may truncate to one line only in

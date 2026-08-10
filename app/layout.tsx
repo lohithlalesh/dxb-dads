@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { PODCAST } from "../lib/podcast";
 import { SITE_URL, siteUrl } from "../lib/site";
 import "./globals.css";
+import "./hero-rebuild.css";
 
 export const viewport: Viewport = {
   themeColor: "#0d0b09",

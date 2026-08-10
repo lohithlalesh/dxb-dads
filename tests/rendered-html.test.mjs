@@ -53,11 +53,12 @@ test("server-renders the finished DXB Dads landing page", async () => {
   assert.match(html, /https:\/\/open\.spotify\.com\/show\/033XRlOY44hvb5tbVHd6e1/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /\/dxb-dads-logo-clean\.png/);
-  assert.match(html, /\/podcast-wide-02\.jpg/);
   assert.match(html, /\/podcast-pranav\.jpg/);
   assert.match(html, /\/podcast-mustapha\.jpg/);
   assert.match(html, /\/podcast-pavle\.jpg/);
   assert.match(html, /class="hero split-hero"/);
+  assert.match(html, /class="show-poster hero-art"/);
+  assert.match(html, /class="host-cutout cutout-mustapha"/);
   assert.match(html, /A FATHERHOOD/);
   assert.match(
     html,
