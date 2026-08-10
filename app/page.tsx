@@ -141,20 +141,20 @@ export default async function Home() {
 
         <div className="split-hero-grid" id="content">
           <div className="show-poster hero-art" aria-label="Pranav, Mustapha and Pavle on DXB Dads">
-            <div className="hero-art-grid" aria-hidden="true" />
-            <div className="hero-art-orbit orbit-one" aria-hidden="true" />
-            <div className="hero-art-orbit orbit-two" aria-hidden="true" />
-            <div className="hero-art-spark spark-one" aria-hidden="true" />
-            <div className="hero-art-spark spark-two" aria-hidden="true" />
-            <div className="hero-art-spark spark-three" aria-hidden="true" />
+            <div className="pulp-halftone" aria-hidden="true" />
+            <div className="pulp-stripe" aria-hidden="true">
+              <span>NO SCRIPT · NO FILTER · DUBAI ·</span>
+            </div>
+            <div className="pulp-burst burst-one" aria-hidden="true">REAL</div>
+            <div className="pulp-burst burst-two" aria-hidden="true">03</div>
 
             <figure className="host-cutout cutout-pranav">
               <div className="host-cutout-photo">
                 <Image
-                  src={assetPath("/podcast-pranav.jpg")}
+                  src={assetPath("/host-cutout-pranav.png")}
                   alt="Pranav speaking on the DXB Dads podcast"
                   fill
-                  sizes="(max-width: 820px) 34vw, 19vw"
+                  sizes="(max-width: 820px) 54vw, 31vw"
                   priority
                 />
               </div>
@@ -164,10 +164,10 @@ export default async function Home() {
             <figure className="host-cutout cutout-mustapha">
               <div className="host-cutout-photo">
                 <Image
-                  src={assetPath("/podcast-mustapha.jpg")}
+                  src={assetPath("/host-cutout-mustapha.png")}
                   alt="Mustapha speaking on the DXB Dads podcast"
                   fill
-                  sizes="(max-width: 820px) 38vw, 22vw"
+                  sizes="(max-width: 820px) 58vw, 34vw"
                   priority
                 />
               </div>
@@ -177,23 +177,18 @@ export default async function Home() {
             <figure className="host-cutout cutout-pavle">
               <div className="host-cutout-photo">
                 <Image
-                  src={assetPath("/podcast-pavle.jpg")}
+                  src={assetPath("/host-cutout-pavle.png")}
                   alt="Pavle Rastovic speaking on the DXB Dads podcast"
                   fill
-                  sizes="(max-width: 820px) 34vw, 19vw"
+                  sizes="(max-width: 820px) 54vw, 31vw"
                   priority
                 />
               </div>
               <figcaption><span>03</span> Pavle</figcaption>
             </figure>
 
-            <div className="hero-waveform" aria-hidden="true">
-              {Array.from({ length: 13 }, (_, index) => (
-                <i key={index} style={{ animationDelay: `${index * 70}ms` }} />
-              ))}
-            </div>
             <div className="hero-art-copy" aria-hidden="true">
-              <span>DXB / UAE</span>
+              <span>DXB / UAE · ISSUE 01</span>
               <strong>REAL DADS.<br />REAL TALK.</strong>
             </div>
           </div>

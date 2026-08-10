@@ -4,8 +4,8 @@ This is the source of truth for future site changes. Page-specific files in
 `pages/` may override it when a route needs a deliberate exception.
 
 **Product:** Podcast discovery and publishing hub  
-**Direction:** Editorial cinema — compact, chromatic, image-led, tactile
-**Design dials:** Variance 6/10 · Motion 4/10 · Density 3/10
+**Direction:** 1990s pulp editorial — compact, cinematic, cut-paper, image-led
+**Design dials:** Variance 7/10 · Motion 3/10 · Density 3/10
 
 ## Experience principles
 
@@ -42,7 +42,7 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
 ### Typography
 
 - Display: Anton, uppercase, 4–7rem on desktop, `-0.03em` tracking and
-  `0.92–0.95` line-height.
+  `1.0–1.06` line-height. Never overlap adjacent display lines.
 - Body/UI: Manrope, minimum 16px for paragraph copy and 1.5+ line-height.
 - Labels: Manrope 700/800, uppercase, letter-spaced; never below 12px when the
   text carries meaning.
@@ -79,9 +79,10 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
 - Keep the full homepage hero within the first viewport. Copy sits on the left;
   a compact abstract host collage sits on the right on desktop and above the
   copy on mobile.
-- Use real close-ups of Pranav, Mustapha and Pavle as layered irregular
-  cutouts. Gold edges, an editorial grid, orbit lines, sparks and a small audio
-  waveform provide movement without overwhelming the photography.
+- Use real isolated upper-body silhouettes of Pranav, Mustapha and Pavle with
+  thick aged-cream and mustard offset outlines. Layer them over halftone dots,
+  torn red print strips and small starbursts; never put the hosts back inside
+  rectangular, glass or low-opacity panels.
 - Lead with the genre proposition, then one latest-episode action and one
   archive action. Platform links remain visible but secondary.
 - The current episode label is data-driven and may truncate to one line only in
@@ -113,8 +114,9 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
 ## Motion
 
 - Keep hover/focus transitions between 150–300ms.
-- Use one short entrance sequence for the hero and a slow ticker as the only
-  persistent motion.
+- Use one short, punchy poster-slam entrance for the host silhouettes and print
+  accents. The slow ticker is the only persistent motion; hero elements must
+  settle completely after the first second.
 - Avoid scroll-jacking, parallax, carousels and decorative animation that delays
   episode discovery.
 - Respect `prefers-reduced-motion` globally.
@@ -148,3 +150,5 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
 - No tiny icon-only controls.
 - No manually maintained “latest episode” copy.
 - No hard-coded heights for episode titles or descriptions.
+- No translucent grid squares, orbit animations or endlessly floating hero
+  portraits.
