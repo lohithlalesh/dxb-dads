@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  FaApple,
+  FaEnvelope,
+  FaInstagram,
+  FaRss,
+  FaSpotify,
+  FaYoutube,
+} from "react-icons/fa";
+import {
   formatEpisodeDate,
   getEpisodes,
   HOSTS,
@@ -52,20 +60,24 @@ function episodeExcerpt(value: string) {
 
 function PlatformLinks() {
   const platforms = [
-    { name: "YouTube", note: "Watch full episodes", url: PODCAST.youtube },
-    { name: "Spotify", note: "Listen and follow", url: PODCAST.spotify },
-    { name: "Apple Podcasts", note: "Listen and follow", url: PODCAST.apple },
+    { name: "YouTube", note: "Watch full episodes", url: PODCAST.youtube, icon: FaYoutube },
+    { name: "Spotify", note: "Listen and follow", url: PODCAST.spotify, icon: FaSpotify },
+    { name: "Apple Podcasts", note: "Listen and follow", url: PODCAST.apple, icon: FaApple },
   ];
 
   return (
     <div className="platform-grid" aria-label="Listen to DXB Dads">
-      {platforms.map((platform) => (
-        <a key={platform.name} href={platform.url} target="_blank" rel="noreferrer">
-          <span>{platform.note}</span>
-          <strong>{platform.name}</strong>
-          <Arrow />
-        </a>
-      ))}
+      {platforms.map((platform) => {
+        const Icon = platform.icon;
+        return (
+          <a key={platform.name} href={platform.url} target="_blank" rel="noreferrer">
+            <Icon className="platform-icon" aria-hidden="true" />
+            <span className="platform-note">{platform.note}</span>
+            <strong>{platform.name}</strong>
+            <Arrow />
+          </a>
+        );
+      })}
     </div>
   );
 }
@@ -151,8 +163,8 @@ export default async function Home() {
             <figure className="host-cutout cutout-pranav">
               <div className="host-cutout-photo">
                 <Image
-                  src={assetPath("/host-cutout-pranav.png")}
-                  alt="Pranav speaking on the DXB Dads podcast"
+                  src={assetPath("/host-cutout-smile-pranav.png")}
+                  alt="Pranav smiling on the DXB Dads podcast"
                   fill
                   sizes="(max-width: 820px) 54vw, 31vw"
                   priority
@@ -164,8 +176,8 @@ export default async function Home() {
             <figure className="host-cutout cutout-mustapha">
               <div className="host-cutout-photo">
                 <Image
-                  src={assetPath("/host-cutout-mustapha.png")}
-                  alt="Mustapha speaking on the DXB Dads podcast"
+                  src={assetPath("/host-cutout-smile-mustapha.png")}
+                  alt="Mustapha smiling on the DXB Dads podcast"
                   fill
                   sizes="(max-width: 820px) 58vw, 34vw"
                   priority
@@ -177,8 +189,8 @@ export default async function Home() {
             <figure className="host-cutout cutout-pavle">
               <div className="host-cutout-photo">
                 <Image
-                  src={assetPath("/host-cutout-pavle.png")}
-                  alt="Pavle Rastovic speaking on the DXB Dads podcast"
+                  src={assetPath("/host-cutout-smile-pavle.png")}
+                  alt="Pavle Rastovic smiling on the DXB Dads podcast"
                   fill
                   sizes="(max-width: 820px) 54vw, 31vw"
                   priority
@@ -222,12 +234,15 @@ export default async function Home() {
               <div className="hero-listen" aria-label="Listen to DXB Dads on">
                 <span>Listen on</span>
                 <a href={PODCAST.spotify} target="_blank" rel="noreferrer">
+                  <FaSpotify aria-hidden="true" />
                   Spotify
                 </a>
                 <a href={PODCAST.apple} target="_blank" rel="noreferrer">
+                  <FaApple aria-hidden="true" />
                   Apple Podcasts
                 </a>
                 <a href={PODCAST.youtube} target="_blank" rel="noreferrer">
+                  <FaYoutube aria-hidden="true" />
                   YouTube
                 </a>
               </div>
@@ -469,6 +484,7 @@ export default async function Home() {
           target="_blank"
           rel="noreferrer"
         >
+          <FaInstagram className="instagram-icon" aria-hidden="true" />
           <span>Clips &amp; behind the scenes</span>
           <strong>@dxb.dads</strong>
           <Arrow />
@@ -489,21 +505,29 @@ export default async function Home() {
         <div className="footer-links">
           <Link href="/episodes">Episodes</Link>
           <a href={PODCAST.youtube} target="_blank" rel="noreferrer">
+            <FaYoutube aria-hidden="true" />
             YouTube
           </a>
           <a href={PODCAST.spotify} target="_blank" rel="noreferrer">
+            <FaSpotify aria-hidden="true" />
             Spotify
           </a>
           <a href={PODCAST.apple} target="_blank" rel="noreferrer">
+            <FaApple aria-hidden="true" />
             Apple Podcasts
           </a>
           <a href={PODCAST.instagram} target="_blank" rel="noreferrer">
+            <FaInstagram aria-hidden="true" />
             Instagram
           </a>
           <a href={PODCAST.rss} target="_blank" rel="noreferrer">
+            <FaRss aria-hidden="true" />
             RSS
           </a>
-          <a href={`mailto:${PODCAST.email}`}>Contact</a>
+          <a href={`mailto:${PODCAST.email}`}>
+            <FaEnvelope aria-hidden="true" />
+            Contact
+          </a>
         </div>
         <div className="footer-bottom">
           <p>© 2026 DXB Dads. All Rights Reserved.</p>

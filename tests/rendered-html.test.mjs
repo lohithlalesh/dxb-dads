@@ -59,9 +59,10 @@ test("server-renders the finished DXB Dads landing page", async () => {
   assert.match(html, /class="hero split-hero"/);
   assert.match(html, /class="show-poster hero-art"/);
   assert.match(html, /class="host-cutout cutout-mustapha"/);
-  assert.match(html, /\/host-cutout-pranav\.png/);
-  assert.match(html, /\/host-cutout-mustapha\.png/);
-  assert.match(html, /\/host-cutout-pavle\.png/);
+  assert.match(html, /\/host-cutout-smile-pranav\.png/);
+  assert.match(html, /\/host-cutout-smile-mustapha\.png/);
+  assert.match(html, /\/host-cutout-smile-pavle\.png/);
+  assert.match(html, /class="platform-icon"/);
   assert.match(html, /class="pulp-halftone"/);
   assert.doesNotMatch(html, /hero-art-grid|hero-art-orbit|hero-waveform/);
   assert.match(html, /A FATHERHOOD/);

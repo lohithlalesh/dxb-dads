@@ -83,6 +83,10 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
   thick aged-cream and mustard offset outlines. Layer them over halftone dots,
   torn red print strips and small starbursts; never put the hosts back inside
   rectangular, glass or low-opacity panels.
+- Keep all three host silhouettes at comparable face and torso scale. The
+  centre portrait may overlap shoulders, but it must not hide either side
+  host's face, body, or paper name label. Keep the full halftone circle inside
+  the artwork at every breakpoint.
 - Lead with the genre proposition, then one latest-episode action and one
   archive action. Platform links remain visible but secondary.
 - The current episode label is data-driven and may truncate to one line only in
@@ -109,7 +113,9 @@ sit on a sufficiently opaque surface with WCAG AA contrast.
 ### Platform links
 
 - Group YouTube, Spotify and Apple Podcasts in one clear section.
-- Use platform names in text; do not depend on logo recognition or color alone.
+- Pair every platform name with its recognizable icon; retain the written name
+  so the interface never depends on logo recognition or color alone. Apply the
+  same icon-and-label treatment to Instagram, RSS and contact links.
 
 ## Motion
 
