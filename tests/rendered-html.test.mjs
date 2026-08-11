@@ -53,6 +53,13 @@ test("server-renders the finished DXB Dads landing page", async () => {
   assert.match(html, /https:\/\/www\.youtube\.com\/@DXBDads/);
   assert.match(html, /https:\/\/open\.spotify\.com\/show\/033XRlOY44hvb5tbVHd6e1/);
   assert.match(html, /application\/ld\+json/);
+  assert.match(html, /PodcastSeries/);
+  assert.match(html, /Organization/);
+  assert.match(html, /WebSite/);
+  assert.match(
+    html,
+    /<link rel="canonical" href="https:\/\/dxbdads\.ae\/"/i,
+  );
   assert.match(html, /\/dxb-dads-logo-clean\.png/);
   assert.match(html, /\/podcast-pranav\.jpg/);
   assert.match(html, /\/podcast-mustapha\.jpg/);
@@ -69,7 +76,7 @@ test("server-renders the finished DXB Dads landing page", async () => {
   assert.match(html, /A FATHERHOOD/);
   assert.match(
     html,
-    /https:\/\/dxb-dads\.laleshlohith\.chatgpt\.site\/og\.png/,
+    /https:\/\/dxbdads\.ae\/og\.png/,
   );
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });

@@ -59,18 +59,29 @@ export default async function EpisodePage({ params }: EpisodePageProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "PodcastEpisode",
+    "@id": siteUrl(`/episodes/${episode.slug}/#episode`),
     name: episode.title,
+    url: siteUrl(`/episodes/${episode.slug}`),
     description: paragraphs.slice(0, 4).join(" "),
     datePublished: episode.publishedAt,
+    inLanguage: "en-AE",
     episodeNumber: episode.episodeNumber ?? undefined,
     partOfSeason: episode.seasonNumber
       ? { "@type": "PodcastSeason", seasonNumber: episode.seasonNumber }
       : undefined,
     partOfSeries: {
       "@type": "PodcastSeries",
+      "@id": siteUrl("/#podcast"),
       name: PODCAST.name,
       url: siteUrl("/"),
     },
+    publisher: {
+      "@type": "Organization",
+      "@id": siteUrl("/#organization"),
+      name: "DXB Dads",
+      url: siteUrl("/"),
+    },
+    mainEntityOfPage: siteUrl(`/episodes/${episode.slug}`),
     associatedMedia: episode.audioUrl
       ? { "@type": "AudioObject", contentUrl: episode.audioUrl }
       : undefined,

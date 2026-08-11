@@ -65,27 +65,54 @@ export default async function Home() {
 
   const seriesSchema = {
     "@context": "https://schema.org",
-    "@type": "PodcastSeries",
-    name: PODCAST.name,
-    description: PODCAST.description,
-    url: siteUrl("/"),
-    webFeed: PODCAST.rss,
-    image:
-      siteUrl("/dxb-dads-logo-clean.png"),
-    inLanguage: "en",
-    genre: ["Parenting", "Kids & Family", "Society & Culture"],
-    author: HOSTS.map((host) => ({
-      "@type": "Person",
-      name:
-        "nickname" in host && host.nickname
-          ? `${host.name} (${host.nickname})`
-          : host.name,
-    })),
-    sameAs: [
-      PODCAST.youtube,
-      PODCAST.spotify,
-      PODCAST.apple,
-      PODCAST.instagram,
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": siteUrl("/#organization"),
+        name: "DXB Dads",
+        url: siteUrl("/"),
+        logo: siteUrl("/dxb-dads-logo-clean.png"),
+        email: PODCAST.email,
+        sameAs: [
+          PODCAST.youtube,
+          PODCAST.spotify,
+          PODCAST.apple,
+          PODCAST.instagram,
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": siteUrl("/#website"),
+        name: "DXB Dads Podcast",
+        url: siteUrl("/"),
+        inLanguage: "en-AE",
+        publisher: { "@id": siteUrl("/#organization") },
+      },
+      {
+        "@type": "PodcastSeries",
+        "@id": siteUrl("/#podcast"),
+        name: PODCAST.name,
+        description: PODCAST.description,
+        url: siteUrl("/"),
+        webFeed: PODCAST.rss,
+        image: siteUrl("/dxb-dads-logo-clean.png"),
+        inLanguage: "en-AE",
+        genre: ["Parenting", "Kids & Family", "Society & Culture"],
+        publisher: { "@id": siteUrl("/#organization") },
+        author: HOSTS.map((host) => ({
+          "@type": "Person",
+          name:
+            "nickname" in host && host.nickname
+              ? `${host.name} (${host.nickname})`
+              : host.name,
+        })),
+        sameAs: [
+          PODCAST.youtube,
+          PODCAST.spotify,
+          PODCAST.apple,
+          PODCAST.instagram,
+        ],
+      },
     ],
   };
 

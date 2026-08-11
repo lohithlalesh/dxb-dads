@@ -4,8 +4,8 @@
 
 ## Key pages
 
-- [Home](https://lohithlalesh.github.io/dxb-dads/): Show overview, latest episode, hosts and listening links.
-- [Episodes](https://lohithlalesh.github.io/dxb-dads/episodes/): Current DXB Dads episode archive.
+- [Home](https://dxbdads.ae/): Show overview, latest episode, hosts and listening links.
+- [Episodes](https://dxbdads.ae/episodes/): Current DXB Dads episode archive.
 - [YouTube](https://www.youtube.com/@DXBDads): Full video episodes and clips.
 - [Spotify](https://open.spotify.com/show/033XRlOY44hvb5tbVHd6e1): Follow and listen on Spotify.
 - [Apple Podcasts](https://podcasts.apple.com/us/podcast/dxb-dads/id6795961480): Follow and listen on Apple Podcasts.
@@ -29,7 +29,7 @@
 ## Latest episode
 
 - Episode 2, Part 1: “ARE WE THERE YET? | Travelling With Kids Without Losing Your Mind” — published 6 August 2026.
-- [Episode page](https://lohithlalesh.github.io/dxb-dads/episodes/are-we-there-yet-travelling-with-kids-without-losing-your-mind-ep-2-part-1/)
+- [Episode page](https://dxbdads.ae/episodes/are-we-there-yet-travelling-with-kids-without-losing-your-mind-ep-2-part-1/)
 - [YouTube](https://www.youtube.com/watch?v=2WbG27LCg8o)
 
 ## Contact
