@@ -9,14 +9,13 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import {
-  formatEpisodeDate,
   getEpisodes,
   HOSTS,
   PODCAST,
   shortEpisodeTitle,
-  type Episode,
 } from "../lib/podcast";
 import { assetPath, siteUrl } from "../lib/site";
+import LatestConversation from "./LatestConversation";
 
 export const revalidate = 900;
 export const dynamic = "force-static";
@@ -32,30 +31,6 @@ const HOST_IMAGES = {
 
 function Arrow({ direction = "out" }: { direction?: "out" | "down" }) {
   return <span aria-hidden="true">{direction === "down" ? "↓" : "↗"}</span>;
-}
-
-function episodeLabel(episode: Episode) {
-  if (episode.type === "trailer") return "Official trailer";
-  if (episode.type === "bonus") return "Bonus episode";
-  return `Season ${String(episode.seasonNumber ?? 1).padStart(2, "0")} · Episode ${String(episode.episodeNumber ?? 1).padStart(2, "0")}`;
-}
-
-function episodeExcerpt(value: string) {
-  const lines = value
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .filter(
-      (line) =>
-        line.length > 35 &&
-        !/^(welcome|follow|hosted by|if you enjoy|copyright|all original|unauthorized|sharing this|dxbdads™)/i.test(
-          line,
-        ) &&
-        !line.startsWith("#"),
-    );
-  const excerpt = lines.slice(0, 3).join(" ");
-  if (!excerpt) return PODCAST.description;
-  return excerpt.length > 280 ? `${excerpt.slice(0, 277).trim()}…` : excerpt;
 }
 
 function PlatformLinks() {
@@ -86,9 +61,6 @@ export default async function Home() {
   const episodes = await getEpisodes();
   const latest =
     episodes.find((episode) => episode.type === "full") ?? episodes[0];
-  const recent = episodes
-    .filter((episode) => episode.slug !== latest.slug)
-    .slice(0, 3);
   const latestWatchUrl = latest.youtube?.url ?? latest.spotifyUrl;
 
   const seriesSchema = {
@@ -291,122 +263,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="latest" id="latest" aria-labelledby="latest-title">
-        <div className="section-heading">
-          <div>
-            <p className="section-label">[ NOW PLAYING ]</p>
-            <h2 id="latest-title">
-              LATEST <span>CONVERSATION</span>
-            </h2>
-          </div>
-          <div className="latest-heading-actions">
-            <details className="episode-picker">
-              <summary>
-                <span>Choose a conversation</span>
-                <small>{episodes.length} available</small>
-              </summary>
-              <div className="episode-picker-menu">
-                {episodes.map((episode) => (
-                  <Link
-                    className={episode.slug === latest.slug ? "is-current" : undefined}
-                    href={`/episodes/${episode.slug}`}
-                    key={episode.slug}
-                  >
-                    <span>
-                      {episode.slug === latest.slug ? "Latest" : episodeLabel(episode)}
-                    </span>
-                    <strong>{shortEpisodeTitle(episode.title)}</strong>
-                    <small>{formatEpisodeDate(episode.publishedAt)}</small>
-                  </Link>
-                ))}
-              </div>
-            </details>
-            <Link className="text-link" href="/episodes">
-              Browse every episode <Arrow />
-            </Link>
-          </div>
-        </div>
-
-        <article className="featured-episode">
-          <a
-            className="episode-media"
-            href={latestWatchUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`${latest.youtube ? "Watch" : "Listen to"} ${latest.title}`}
-          >
-            <Image
-              src={latest.youtube?.thumbnail ?? assetPath("/podcast-wide-01.jpg")}
-              alt=""
-              fill
-              sizes="(max-width: 960px) 100vw, 58vw"
-            />
-            <span className="play-button" aria-hidden="true">
-              ▶
-            </span>
-            <span className="media-corner">
-              {latest.youtube ? "Watch full episode" : "Listen to episode"}
-            </span>
-          </a>
-          <div className="episode-content">
-            <p className="episode-meta">
-              {episodeLabel(latest)} · {formatEpisodeDate(latest.publishedAt)}
-            </p>
-            <h3>{shortEpisodeTitle(latest.title)}</h3>
-            <p className="episode-description">
-              {episodeExcerpt(latest.description)}
-            </p>
-            <div className="episode-actions">
-              <Link className="button primary dark" href={`/episodes/${latest.slug}`}>
-                Episode notes <Arrow />
-              </Link>
-              <a
-                className="button ghost"
-                href={latest.spotifyUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Listen on Spotify <Arrow />
-              </a>
-            </div>
-          </div>
-        </article>
-
-        {recent.length > 0 && (
-          <div className="recent-block">
-            <div className="recent-heading">
-              <p className="section-label">[ MORE FROM THE TABLE ]</p>
-              <p>New releases move to the front automatically.</p>
-            </div>
-            <div className="recent-grid">
-              {recent.map((episode) => (
-                <article className="recent-card" key={episode.slug}>
-                  <Link className="recent-image" href={`/episodes/${episode.slug}`}>
-                    <Image
-                      src={episode.youtube?.thumbnail ?? assetPath("/podcast-conversation.jpg")}
-                      alt=""
-                      fill
-                      sizes="(max-width: 720px) 100vw, 33vw"
-                    />
-                    <span>{episodeLabel(episode)}</span>
-                  </Link>
-                  <div>
-                    <p>{formatEpisodeDate(episode.publishedAt)}</p>
-                    <h3>
-                      <Link href={`/episodes/${episode.slug}`}>
-                        {shortEpisodeTitle(episode.title)}
-                      </Link>
-                    </h3>
-                    <Link className="card-link" href={`/episodes/${episode.slug}`}>
-                      Open episode <Arrow />
-                    </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        )}
-      </section>
+      <LatestConversation initialEpisodes={episodes} />
 
       <section className="studio-story" aria-label="Inside the DXB Dads studio">
         <div className="studio-photo-wrap">
