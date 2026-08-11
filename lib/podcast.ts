@@ -54,6 +54,13 @@ export type Episode = {
 
 const KNOWN_YOUTUBE: YouTubeVideo[] = [
   {
+    id: "2WbG27LCg8o",
+    title:
+      "✈️ ARE WE THERE YET? | Travelling With Kids Without Losing Your Mind | EP 2 PART 1",
+    url: "https://www.youtube.com/watch?v=2WbG27LCg8o",
+    thumbnail: "https://i.ytimg.com/vi/2WbG27LCg8o/maxresdefault.jpg",
+  },
+  {
     id: "hZ9q5O4cvAA",
     title:
       "TOO HOT TO PARENT 🔥 | Surviving Dubai Summer Without Losing Your Mind | DXB.DADS EP01",
@@ -63,6 +70,23 @@ const KNOWN_YOUTUBE: YouTubeVideo[] = [
 ];
 
 const FALLBACK_EPISODES: Episode[] = [
+  {
+    title:
+      "ARE WE THERE YET? | Travelling With Kids Without Losing Your Mind | EP 2 PART 1",
+    slug: "are-we-there-yet-travelling-with-kids-without-losing-your-mind-ep-2-part-1",
+    description:
+      "Family holidays used to mean relaxing. Then you had kids. Pranav, Pavle and Mustapha unpack planning, packing, airports, long flights, costs, destinations and the reality of travelling as a parent.",
+    publishedAt: "2026-08-06T15:00:01.000Z",
+    episodeNumber: 2,
+    seasonNumber: 1,
+    type: "full",
+    spotifyUrl:
+      "https://podcasters.spotify.com/pod/show/pavle13/episodes/ARE-WE-THERE-YET---Travelling-With-Kids-Without-Losing-Your-Mind--EP-2-PART-1-e3n20g1",
+    audioUrl:
+      "https://anchor.fm/s/1157522fc/podcast/play/123846593/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-7-6%2F429324743-44100-2-72a8254ef4947.mp3",
+    duration: "29:33",
+    youtube: KNOWN_YOUTUBE[0],
+  },
   {
     title:
       "🔥 TOO HOT TO PARENT | Surviving Dubai Summer Without Losing Your Mind",
@@ -78,9 +102,11 @@ const FALLBACK_EPISODES: Episode[] = [
     audioUrl:
       "https://anchor.fm/s/1157522fc/podcast/play/123516032/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-6-30%2F428883400-44100-2-2ad6a089e5999.mp3",
     duration: "53:24",
-    youtube: KNOWN_YOUTUBE[0],
+    youtube: KNOWN_YOUTUBE[1],
   },
 ];
+
+const RSS_REFRESH_SECONDS = 15 * 60;
 
 function decodeEntities(value: string) {
   return value
@@ -187,8 +213,8 @@ async function fetchYouTubeVideos(): Promise<YouTubeVideo[]> {
     const response = await fetch(
       `https://www.youtube.com/feeds/videos.xml?channel_id=${PODCAST.youtubeChannelId}`,
       {
-      headers: { "user-agent": "Mozilla/5.0 DXBDadsWebsite/1.0" },
-      cache: "force-cache",
+        headers: { "user-agent": "Mozilla/5.0 DXBDadsWebsite/1.0" },
+        next: { revalidate: RSS_REFRESH_SECONDS },
       },
     );
     if (!response.ok) return KNOWN_YOUTUBE;
@@ -268,7 +294,10 @@ function parseFeed(xml: string, videos: YouTubeVideo[]): Episode[] {
 export async function getEpisodes() {
   try {
     const [response, videos] = await Promise.all([
-      fetch(PODCAST.rss, { cache: "force-cache" }),
+      fetch(PODCAST.rss, {
+        headers: { "user-agent": "Mozilla/5.0 DXBDadsWebsite/1.0" },
+        next: { revalidate: RSS_REFRESH_SECONDS },
+      }),
       fetchYouTubeVideos(),
     ]);
     if (!response.ok) return FALLBACK_EPISODES;

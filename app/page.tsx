@@ -294,16 +294,37 @@ export default async function Home() {
       <section className="latest" id="latest" aria-labelledby="latest-title">
         <div className="section-heading">
           <div>
-            <p className="section-label">[ LATEST CONVERSATION ]</p>
+            <p className="section-label">[ NOW PLAYING ]</p>
             <h2 id="latest-title">
-              PRESS PLAY.
-              <br />
-              <span>STAY FOR THE TRUTH.</span>
+              LATEST <span>CONVERSATION</span>
             </h2>
           </div>
-          <Link className="text-link" href="/episodes">
-            Browse every episode <Arrow />
-          </Link>
+          <div className="latest-heading-actions">
+            <details className="episode-picker">
+              <summary>
+                <span>Choose a conversation</span>
+                <small>{episodes.length} available</small>
+              </summary>
+              <div className="episode-picker-menu">
+                {episodes.map((episode) => (
+                  <Link
+                    className={episode.slug === latest.slug ? "is-current" : undefined}
+                    href={`/episodes/${episode.slug}`}
+                    key={episode.slug}
+                  >
+                    <span>
+                      {episode.slug === latest.slug ? "Latest" : episodeLabel(episode)}
+                    </span>
+                    <strong>{shortEpisodeTitle(episode.title)}</strong>
+                    <small>{formatEpisodeDate(episode.publishedAt)}</small>
+                  </Link>
+                ))}
+              </div>
+            </details>
+            <Link className="text-link" href="/episodes">
+              Browse every episode <Arrow />
+            </Link>
+          </div>
         </div>
 
         <article className="featured-episode">

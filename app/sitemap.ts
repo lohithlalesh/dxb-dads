@@ -3,6 +3,7 @@ import { getEpisodes } from "../lib/podcast";
 import { SITE_URL } from "../lib/site";
 
 export const dynamic = "force-static";
+export const revalidate = 900;
 
 const BASE_URL = SITE_URL;
 

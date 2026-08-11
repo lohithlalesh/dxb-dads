@@ -45,7 +45,8 @@ test("server-renders the finished DXB Dads landing page", async () => {
   assert.match(html, /REAL LIFE/);
   assert.match(html, /REAL TALK/);
   assert.match(html, /Three dads\. Three cultures\./i);
-  assert.match(html, /TOO HOT TO PARENT/i);
+  assert.match(html, /ARE WE THERE YET/i);
+  assert.match(html, /Choose a conversation/i);
   assert.match(html, /Pranav/);
   assert.match(html, /Mustapha/);
   assert.match(html, /Pavle Rastovic/);

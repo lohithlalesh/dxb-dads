@@ -13,7 +13,7 @@ import { assetPath, siteUrl } from "../../../lib/site";
 
 export const revalidate = 900;
 export const dynamic = "force-static";
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 type EpisodePageProps = {
   params: Promise<{ slug: string }>;
