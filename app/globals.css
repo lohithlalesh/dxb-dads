@@ -3513,7 +3513,15 @@ footer {
   }
 
   .recent-image {
+    width: 100%;
+    height: auto;
     min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .recent-image img {
+    object-fit: cover;
+    object-position: center;
   }
 
   .studio-story .studio-copy {
