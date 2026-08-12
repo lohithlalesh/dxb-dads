@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   FaApple,
@@ -15,6 +14,7 @@ import {
   shortEpisodeTitle,
 } from "../lib/podcast";
 import { assetPath, siteUrl } from "../lib/site";
+import Image from "../components/DirectImage";
 import LatestConversation from "./LatestConversation";
 
 export const revalidate = 900;

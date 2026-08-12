@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
@@ -11,6 +10,7 @@ import {
   type Episode,
 } from "../lib/podcast";
 import { assetPath } from "../lib/site";
+import Image from "../components/DirectImage";
 
 const RSS_REFRESH_MS = 15 * 60 * 1000;
 

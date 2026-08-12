@@ -10,7 +10,10 @@ const nextConfig: NextConfig = {
   assetPrefix: basePath || undefined,
   trailingSlash: isGitHubPages,
   images: {
-    unoptimized: isGitHubPages,
+    // Serve the bundled originals directly. The vinext image-optimization
+    // endpoint is unavailable in the Cloudflare Worker runtime and returned
+    // HTTP 500, leaving every Next Image blank in production.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

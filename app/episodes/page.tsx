@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
   formatEpisodeDate,
@@ -8,6 +7,7 @@ import {
   shortEpisodeTitle,
 } from "../../lib/podcast";
 import { assetPath } from "../../lib/site";
+import Image from "../../components/DirectImage";
 
 export const revalidate = 900;
 export const dynamic = "force-static";
