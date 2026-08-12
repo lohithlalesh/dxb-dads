@@ -5,6 +5,9 @@ import "./globals.css";
 import "./hero-rebuild.css";
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
   themeColor: "#0d0b09",
   colorScheme: "dark",
 };

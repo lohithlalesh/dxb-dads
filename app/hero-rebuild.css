@@ -558,6 +558,11 @@
 }
 
 @media (max-width: 560px) {
+  .split-hero {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
   .split-hero .site-header { width: calc(100% - 28px); }
   .split-hero .nav-cta { min-height: 42px; padding: 0 12px; font-size: 0.56rem; }
   .split-hero-grid { grid-template-rows: minmax(284px, 39svh) auto; }
@@ -581,11 +586,11 @@
   .pulp-stripe span { font-size: 0.78rem; }
   .hero-editorial { padding: 18px 18px 30px; }
   .hero-editorial .hero-kicker { font-size: 0.54rem; }
-  .hero-editorial h1 { font-size: clamp(2.65rem, 13vw, 4rem); line-height: 1.03; letter-spacing: -0.01em; }
+  .hero-editorial h1 { width: 100%; max-width: 100%; font-size: clamp(2.15rem, 10.2vw, 3.15rem); line-height: 1.03; letter-spacing: -0.01em; }
   .hero-editorial .hero-deck { display: -webkit-box; overflow: hidden; font-size: 0.86rem; line-height: 1.58; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
-  .hero-editorial .hero-actions { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hero-editorial .hero-actions { grid-template-columns: 1fr; gap: 8px; }
   .hero-editorial .hero-primary,
-  .hero-editorial .hero-secondary { min-height: 44px; padding: 0 11px; font-size: 0.55rem; }
+  .hero-editorial .hero-secondary { width: 100%; min-width: 0; min-height: 44px; padding: 0 11px; font-size: 0.55rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
