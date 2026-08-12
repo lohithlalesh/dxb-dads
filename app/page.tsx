@@ -106,6 +106,14 @@ export default async function Home() {
               ? `${host.name} (${host.nickname})`
               : host.name,
         })),
+        hasPart: episodes.map((episode) => ({
+          "@type": "PodcastEpisode",
+          "@id": siteUrl(`/episodes/${episode.slug}/#episode`),
+          name: episode.title,
+          url: siteUrl(`/episodes/${episode.slug}/`),
+          datePublished: episode.publishedAt,
+          episodeNumber: episode.episodeNumber ?? undefined,
+        })),
         sameAs: [
           PODCAST.youtube,
           PODCAST.spotify,

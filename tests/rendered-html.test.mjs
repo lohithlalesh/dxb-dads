@@ -31,6 +31,32 @@ async function render() {
   );
 }
 
+async function renderPath(pathname) {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+
+  return worker.fetch(
+    new Request(`https://dxb-dads.example${pathname}`, {
+      headers: {
+        accept: "text/plain",
+        host: "dxb-dads.example",
+        "x-forwarded-host": "dxb-dads.example",
+        "x-forwarded-proto": "https",
+      },
+    }),
+    {
+      ASSETS: {
+        fetch: async () => new Response("Not found", { status: 404 }),
+      },
+    },
+    {
+      waitUntil() {},
+      passThroughOnException() {},
+    },
+  );
+}
+
 test("server-renders the finished DXB Dads landing page", async () => {
   const response = await render();
   assert.equal(response.status, 200);
@@ -101,8 +127,6 @@ test("removes the disposable starter and keeps accessibility motion controls", a
   await access(new URL("../public/podcast-pavle.jpg", import.meta.url));
   await access(new URL("../public/podcast-conversation.jpg", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
-  await access(new URL("../public/llms.txt", import.meta.url));
-  await access(new URL("../public/llms-full.txt", import.meta.url));
   await access(new URL("../public/robots.txt", import.meta.url));
 
   assert.match(page, /className="skip-link"/);
@@ -123,4 +147,27 @@ test("removes the disposable starter and keeps accessibility motion controls", a
   await assert.rejects(
     access(new URL("public/_sites-preview", templateRoot)),
   );
+});
+
+test("serves RSS-backed LLM reference files", async () => {
+  const [conciseResponse, fullResponse] = await Promise.all([
+    renderPath("/llms.txt"),
+    renderPath("/llms-full.txt"),
+  ]);
+
+  assert.equal(conciseResponse.status, 200);
+  assert.equal(fullResponse.status, 200);
+  assert.match(
+    conciseResponse.headers.get("content-type") ?? "",
+    /^text\/plain\b/i,
+  );
+  const concise = await conciseResponse.text();
+  const full = await fullResponse.text();
+  assert.match(concise, /# DXB Dads Podcast/);
+  assert.match(concise, /## Latest episode/);
+  assert.match(concise, /ARE WE THERE YET/i);
+  assert.match(concise, /## Episode catalogue/);
+  assert.match(full, /# Episode catalogue/);
+  assert.match(full, /Episode 2.*ARE WE THERE YET/i);
+  assert.match(full, /Episode 1.*TOO HOT TO PARENT/i);
 });
